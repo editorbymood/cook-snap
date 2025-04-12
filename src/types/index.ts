@@ -1,4 +1,3 @@
-
 export interface Recipe {
   id: string;
   name: string;
@@ -11,6 +10,11 @@ export interface Recipe {
   servings: number;
   tags: string[];
   nutritionalInfo?: NutritionalInfo;
+  difficulty?: 'easy' | 'medium' | 'hard';
+  cuisineType?: string;
+  authorId?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface NutritionalInfo {
@@ -20,12 +24,18 @@ export interface NutritionalInfo {
   fat: number;
   fiber?: number;
   sugar?: number;
+  sodium?: number;
 }
 
 export interface RecognitionResult {
   foodName: string;
   confidence: number;
   possibleAlternatives?: string[];
+  imageAnalysis?: {
+    dominantColors?: string[];
+    estimatedPortionSize?: 'small' | 'medium' | 'large';
+    detectedIngredients?: string[];
+  };
 }
 
 export interface User {

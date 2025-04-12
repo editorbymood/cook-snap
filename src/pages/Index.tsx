@@ -35,8 +35,18 @@ const Index = () => {
     // Recognize the food
     setIsRecognizing(true);
     try {
+      // Log file name to help debug
+      console.log("Processing image:", image.name);
+      
       const result = await recognizeFoodFromImage(image);
+      console.log("Recognition result:", result);
       setRecognitionResult(result);
+      
+      // If confidence is very high (over 95%), automatically fetch the recipe
+      if (result.confidence > 0.95) {
+        toast.info(`High confidence match: ${result.foodName}`);
+        handleConfirmResult(result.foodName);
+      }
     } catch (error) {
       toast.error("Failed to recognize the food. Please try again.");
       console.error("Recognition error:", error);
@@ -116,6 +126,11 @@ const Index = () => {
                     alt="Selected food" 
                     className="w-full h-auto object-cover" 
                   />
+                  <div className="p-4 bg-muted/30">
+                    <p className="text-sm text-muted-foreground">
+                      Tip: For best results, use clear images of food items against a simple background.
+                    </p>
+                  </div>
                 </div>
               )}
             </div>

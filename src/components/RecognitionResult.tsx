@@ -17,6 +17,9 @@ const RecognitionResultComponent: React.FC<RecognitionResultProps> = ({
   onRetry,
   isLoading
 }) => {
+  // Format the confidence percentage
+  const confidencePercentage = Math.round(result.confidence * 100);
+  
   return (
     <div className="border rounded-lg p-6 bg-card">
       <h2 className="text-xl font-semibold mb-4">Recognition Results</h2>
@@ -24,8 +27,12 @@ const RecognitionResultComponent: React.FC<RecognitionResultProps> = ({
       <div className="mb-6">
         <div className="flex justify-between items-center mb-2">
           <span className="font-medium">{result.foodName}</span>
-          <span className="text-sm bg-primary/10 text-primary px-2 py-1 rounded-full">
-            {Math.round(result.confidence * 100)}% confident
+          <span className={`text-sm px-2 py-1 rounded-full ${
+            confidencePercentage >= 95 
+              ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
+              : 'bg-primary/10 text-primary'
+          }`}>
+            {confidencePercentage}% confident
           </span>
         </div>
         
