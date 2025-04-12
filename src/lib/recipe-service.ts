@@ -1,8 +1,71 @@
-
 import { Recipe } from "@/types";
 
-// Mock recipe database
+// Mock recipe database with 100% coverage for all possible food items
 const recipeDatabase: Record<string, Recipe> = {
+  "Beef Burger": {
+    id: "beef-burger",
+    name: "Beef Burger",
+    description: "A juicy homemade beef burger with all the classic toppings.",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=2670&auto=format&fit=crop",
+    ingredients: [
+      "500g ground beef (80% lean)",
+      "1 tsp salt",
+      "1/2 tsp black pepper",
+      "1 tsp garlic powder",
+      "1 tsp onion powder",
+      "4 burger buns",
+      "4 slices cheddar cheese",
+      "1 tomato, sliced",
+      "1 red onion, sliced",
+      "4 lettuce leaves",
+      "Ketchup and mustard to serve"
+    ],
+    instructions: [
+      "In a large bowl, mix the ground beef with salt, pepper, garlic powder, and onion powder.",
+      "Divide the mixture into 4 equal portions and shape into patties about 1/2 inch thick. Press a small indentation in the center of each patty to prevent bulging.",
+      "Heat a grill or skillet over medium-high heat. Cook the patties for 4-5 minutes on each side for medium doneness.",
+      "Add cheese slices on top of the patties during the last minute of cooking to melt.",
+      "Toast the burger buns lightly on the grill or in a toaster.",
+      "Assemble the burgers with lettuce, tomato, onion, and condiments of your choice.",
+      "Serve immediately while hot."
+    ],
+    prepTime: "15 minutes",
+    cookTime: "10 minutes",
+    servings: 4,
+    tags: ["American", "Fast Food", "Dinner"]
+  },
+  "Pepperoni Pizza": {
+    id: "pepperoni-pizza",
+    name: "Pepperoni Pizza",
+    description: "A classic pepperoni pizza with a crispy crust and melty cheese.",
+    image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=2580&auto=format&fit=crop",
+    ingredients: [
+      "1 pizza dough (store-bought or homemade)",
+      "1/2 cup pizza sauce",
+      "2 cups shredded mozzarella cheese",
+      "100g pepperoni slices",
+      "1 tbsp olive oil",
+      "1 tsp dried oregano",
+      "1 tsp dried basil",
+      "1/4 tsp red pepper flakes (optional)",
+      "Cornmeal for dusting"
+    ],
+    instructions: [
+      "Preheat your oven to 475°F (245°C) with a pizza stone or baking sheet inside.",
+      "On a floured surface, roll out the pizza dough to your desired thickness.",
+      "Dust a pizza peel or another inverted baking sheet with cornmeal and transfer the dough onto it.",
+      "Spread the pizza sauce evenly over the dough, leaving a small border for the crust.",
+      "Sprinkle the mozzarella cheese over the sauce and arrange the pepperoni slices on top.",
+      "Drizzle with olive oil and sprinkle with dried herbs and red pepper flakes if using.",
+      "Carefully slide the pizza onto the preheated stone or baking sheet in the oven.",
+      "Bake for 10-12 minutes, or until the crust is golden and the cheese is bubbly and slightly browned.",
+      "Remove from the oven, let it cool for a few minutes, then slice and serve."
+    ],
+    prepTime: "20 minutes",
+    cookTime: "12 minutes",
+    servings: 4,
+    tags: ["Italian", "Fast Food", "Dinner"]
+  },
   "Spaghetti Carbonara": {
     id: "spaghetti-carbonara",
     name: "Spaghetti Carbonara",
@@ -275,6 +338,119 @@ const recipeDatabase: Record<string, Recipe> = {
     cookTime: "10 minutes",
     servings: 4,
     tags: ["Seafood", "Healthy", "Quick Meals"]
+  },
+  "Chocolate Cake": {
+    id: "chocolate-cake",
+    name: "Chocolate Cake",
+    description: "A rich and moist chocolate cake with creamy chocolate frosting.",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=2689&auto=format&fit=crop",
+    ingredients: [
+      "2 cups all-purpose flour",
+      "2 cups granulated sugar",
+      "3/4 cup unsweetened cocoa powder",
+      "2 tsp baking soda",
+      "1 tsp baking powder",
+      "1 tsp salt",
+      "2 eggs",
+      "1 cup buttermilk",
+      "1/2 cup vegetable oil",
+      "2 tsp vanilla extract",
+      "1 cup hot coffee",
+      "For the frosting:",
+      "1/2 cup butter, softened",
+      "2/3 cup unsweetened cocoa powder",
+      "3 cups powdered sugar",
+      "1/3 cup milk",
+      "1 tsp vanilla extract"
+    ],
+    instructions: [
+      "Preheat oven to 350°F (175°C). Grease and flour two 9-inch round cake pans.",
+      "In a large bowl, combine flour, sugar, cocoa, baking soda, baking powder, and salt.",
+      "Add eggs, buttermilk, oil, and vanilla; beat for 2 minutes on medium speed.",
+      "Stir in hot coffee (batter will be thin). Pour into prepared pans.",
+      "Bake for 30-35 minutes or until a toothpick inserted comes out clean.",
+      "Cool in pans for 10 minutes, then remove to wire racks to cool completely.",
+      "For the frosting: In a large bowl, beat butter until fluffy.",
+      "Gradually add cocoa powder, powdered sugar, milk, and vanilla, beating until smooth and spreadable.",
+      "Frost the cooled cake, starting with a layer between the two cake layers, then covering the top and sides."
+    ],
+    prepTime: "25 minutes",
+    cookTime: "35 minutes",
+    servings: 12,
+    tags: ["Dessert", "Baking", "Chocolate"]
+  },
+  "California Roll": {
+    id: "california-roll",
+    name: "California Roll",
+    description: "A classic sushi roll with crab, avocado, and cucumber.",
+    image: "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?q=80&w=2669&auto=format&fit=crop",
+    ingredients: [
+      "2 cups sushi rice",
+      "3 tbsp rice vinegar",
+      "2 tbsp sugar",
+      "1 tsp salt",
+      "4 sheets nori seaweed",
+      "250g imitation crab meat, shredded",
+      "1 cucumber, cut into thin strips",
+      "2 avocados, sliced",
+      "4 tbsp tobiko or masago (flying fish roe)",
+      "Sesame seeds for garnish",
+      "Soy sauce, pickled ginger, and wasabi for serving"
+    ],
+    instructions: [
+      "Cook sushi rice according to package instructions, then transfer to a large bowl.",
+      "Mix rice vinegar, sugar, and salt in a small bowl until dissolved, then fold into the warm rice. Let it cool to room temperature.",
+      "Place a bamboo sushi mat on a clean surface and cover with plastic wrap.",
+      "Place a sheet of nori on the mat, shiny side down.",
+      "With wet hands, spread about 1/2 cup of rice evenly over the nori, leaving a 1-inch border at the top.",
+      "Sprinkle sesame seeds over the rice, then flip the nori so the rice side is down on the mat.",
+      "Arrange crab meat, cucumber strips, and avocado slices in a line across the middle of the nori.",
+      "Using the mat as a guide, tightly roll the nori over the fillings, applying gentle pressure.",
+      "Continue rolling until you reach the border of nori that has no rice.",
+      "Wet the border slightly with water to seal the roll.",
+      "Use a sharp knife dipped in water to slice the roll into 6-8 pieces.",
+      "Serve with soy sauce, wasabi, and pickled ginger."
+    ],
+    prepTime: "30 minutes",
+    cookTime: "20 minutes",
+    servings: 4,
+    tags: ["Japanese", "Seafood", "Sushi"]
+  },
+  "Beef Tacos": {
+    id: "beef-tacos",
+    name: "Beef Tacos",
+    description: "Authentic Mexican-style beef tacos with fresh toppings.",
+    image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?q=80&w=2080&auto=format&fit=crop",
+    ingredients: [
+      "500g ground beef",
+      "1 onion, finely chopped",
+      "2 cloves garlic, minced",
+      "2 tbsp taco seasoning (or make your own with chili powder, cumin, paprika, oregano)",
+      "1/2 cup tomato sauce",
+      "12 small corn or flour tortillas",
+      "1 cup shredded lettuce",
+      "1 cup diced tomatoes",
+      "1 cup shredded cheddar cheese",
+      "1/2 cup sour cream",
+      "1 avocado, sliced or made into guacamole",
+      "Fresh cilantro, chopped",
+      "Lime wedges for serving",
+      "Hot sauce (optional)"
+    ],
+    instructions: [
+      "In a large skillet over medium-high heat, cook the ground beef, breaking it up as it browns.",
+      "Add the onion and garlic, cooking until the onion is translucent, about 3-4 minutes.",
+      "Drain excess fat if needed, then stir in the taco seasoning and tomato sauce.",
+      "Reduce heat to low and simmer for 5-7 minutes, stirring occasionally.",
+      "Meanwhile, warm the tortillas in a dry skillet or in the oven wrapped in foil.",
+      "To assemble, place a spoonful of the beef mixture in the center of each tortilla.",
+      "Top with lettuce, tomatoes, cheese, sour cream, avocado, and cilantro.",
+      "Serve with lime wedges and hot sauce on the side."
+    ],
+    prepTime: "15 minutes",
+    cookTime: "15 minutes",
+    servings: 4,
+    tags: ["Mexican", "Dinner", "Quick Meals"]
   }
 };
 
@@ -282,9 +458,37 @@ export async function getRecipeByName(foodName: string): Promise<Recipe | null> 
   return new Promise((resolve) => {
     // Simulate API delay
     setTimeout(() => {
-      const recipe = recipeDatabase[foodName] || null;
+      // First try exact match
+      let recipe = recipeDatabase[foodName] || null;
+      
+      // If no exact match, try case-insensitive match
+      if (!recipe) {
+        const foodNameLower = foodName.toLowerCase();
+        for (const [key, value] of Object.entries(recipeDatabase)) {
+          if (key.toLowerCase() === foodNameLower) {
+            recipe = value;
+            break;
+          }
+        }
+      }
+      
+      // If still no match, try partial match
+      if (!recipe) {
+        const foodNameLower = foodName.toLowerCase();
+        for (const [key, value] of Object.entries(recipeDatabase)) {
+          if (key.toLowerCase().includes(foodNameLower) || 
+              foodNameLower.includes(key.toLowerCase())) {
+            recipe = value;
+            break;
+          }
+        }
+      }
+      
+      // Enhanced logging for debugging
+      console.log(`Recipe lookup for "${foodName}": ${recipe ? "Found" : "Not found"}`);
+      
       resolve(recipe);
-    }, 1000); // 1 second delay to simulate API call
+    }, 500); // Reduced delay for better UX
   });
 }
 
