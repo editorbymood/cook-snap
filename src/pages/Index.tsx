@@ -1,22 +1,27 @@
 
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
-import ImageUpload from "@/components/ImageUpload";
+import ImageUploadNew from "@/components/ImageUploadNew";
 import RecognitionResultComponent from "@/components/RecognitionResult";
 import { RecognitionResult, Recipe } from "@/types";
 import { recognizeFoodFromImage } from "@/lib/image-recognition";
 import { getRecipeByName } from "@/lib/recipe-service";
 import RecipeCard from "@/components/RecipeCard";
 import { toast } from "sonner";
-import { Loader2 } from "lucide-react";
+import { Loader2, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [recognitionResult, setRecognitionResult] = useState<RecognitionResult | null>(null);
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [isRecognizing, setIsRecognizing] = useState(false);
   const [isLoadingRecipe, setIsLoadingRecipe] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleImageSelect = async (image: File) => {
     setSelectedImage(image);
@@ -64,6 +69,13 @@ const Index = () => {
     setRecipe(null);
   };
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/recipes?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -77,10 +89,26 @@ const Index = () => {
             </p>
           </div>
           
+          <div className="max-w-xl mx-auto mb-10">
+            <form onSubmit={handleSearch} className="flex gap-2">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Search for recipes..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-9"
+                />
+              </div>
+              <Button type="submit">Search</Button>
+            </form>
+          </div>
+          
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               {!imagePreview ? (
-                <ImageUpload onImageSelect={handleImageSelect} />
+                <ImageUploadNew onImageSelect={handleImageSelect} />
               ) : (
                 <div className="border rounded-lg overflow-hidden">
                   <img 
@@ -113,6 +141,11 @@ const Index = () => {
                 <div className="space-y-4">
                   <h2 className="text-2xl font-semibold">Recipe Found!</h2>
                   <RecipeCard recipe={recipe} />
+                  <div className="flex justify-center">
+                    <Button asChild>
+                      <Link to={`/recipe/${recipe.id}`}>View Full Recipe</Link>
+                    </Button>
+                  </div>
                 </div>
               )}
             </div>
