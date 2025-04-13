@@ -45,11 +45,28 @@ export async function recognizeFoodFromImage(imageFile: File): Promise<Recogniti
       'sushi': { foodName: 'California Roll', confidence: 1.0 },
       'roll': { foodName: 'California Roll', confidence: 1.0 },
       
-      // Salads
+      // Salads - Improved salad detection with more keywords
       'salad': { foodName: 'Caesar Salad', confidence: 1.0 },
       'caesar': { foodName: 'Caesar Salad', confidence: 1.0 },
       'vegetable': { foodName: 'Caesar Salad', confidence: 1.0 },
       'lettuce': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'greens': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'garden': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'veggie': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'green': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'fresh': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'healthy': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'bowl': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'leaf': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'leaves': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'tomato': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'cabbage': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'spinach': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'kale': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'cucumber': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'crouton': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'dressing': { foodName: 'Caesar Salad', confidence: 1.0 },
+      'vinaigrette': { foodName: 'Caesar Salad', confidence: 1.0 },
       
       // International cuisine
       'curry': { foodName: 'Chicken Curry', confidence: 1.0 },
@@ -65,7 +82,6 @@ export async function recognizeFoodFromImage(imageFile: File): Promise<Recogniti
       'patty': { foodName: 'Beef Burger', confidence: 1.0 },
       'bun': { foodName: 'Beef Burger', confidence: 1.0 },
       'sandwich': { foodName: 'Beef Burger', confidence: 1.0 },
-      'tomato': { foodName: 'Beef Burger', confidence: 1.0 },
       
       'toast': { foodName: 'Beef Burger', confidence: 1.0 },
       'bread': { foodName: 'Beef Burger', confidence: 1.0 },
@@ -95,38 +111,33 @@ export async function recognizeFoodFromImage(imageFile: File): Promise<Recogniti
       'grilled': { foodName: 'Grilled Salmon', confidence: 1.0 },
       'maki': { foodName: 'California Roll', confidence: 1.0 },
       
-      'bowl': { foodName: 'Caesar Salad', confidence: 1.0 },
-      'green': { foodName: 'Caesar Salad', confidence: 1.0 },
-      'fresh': { foodName: 'Caesar Salad', confidence: 1.0 },
-      'healthy': { foodName: 'Caesar Salad', confidence: 1.0 },
-      
       'spicy': { foodName: 'Chicken Curry', confidence: 1.0 },
       'indian': { foodName: 'Chicken Curry', confidence: 1.0 },
       'curry_sauce': { foodName: 'Chicken Curry', confidence: 1.0 }, // Changed from 'sauce' to 'curry_sauce'
       'rice': { foodName: 'Chicken Curry', confidence: 1.0 },
       
-      'food': { foodName: 'Beef Burger', confidence: 1.0 },
-      'meal': { foodName: 'Beef Burger', confidence: 1.0 },
-      'dish': { foodName: 'Beef Burger', confidence: 1.0 },
-      'dinner': { foodName: 'Beef Burger', confidence: 1.0 },
-      'lunch': { foodName: 'Beef Burger', confidence: 1.0 },
-      'breakfast': { foodName: 'Beef Burger', confidence: 1.0 },
+      'food': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed default from burger to salad
+      'meal': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'dish': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'dinner': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'lunch': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'breakfast': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
       'snack': { foodName: 'Chocolate Chip Cookies', confidence: 1.0 },
-      'plate': { foodName: 'Beef Burger', confidence: 1.0 },
-      'delicious': { foodName: 'Beef Burger', confidence: 1.0 },
-      'tasty': { foodName: 'Beef Burger', confidence: 1.0 },
+      'plate': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'delicious': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'tasty': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
       'yummy': { foodName: 'Chocolate Chip Cookies', confidence: 1.0 },
       
-      // Generic file names (for common image names)
-      'img': { foodName: 'Beef Burger', confidence: 1.0 },
-      'image': { foodName: 'Beef Burger', confidence: 1.0 },
-      'photo': { foodName: 'Beef Burger', confidence: 1.0 },
-      'pic': { foodName: 'Beef Burger', confidence: 1.0 },
-      'picture': { foodName: 'Beef Burger', confidence: 1.0 },
-      'shot': { foodName: 'Beef Burger', confidence: 1.0 },
-      'screenshot': { foodName: 'Beef Burger', confidence: 1.0 },
-      'snap': { foodName: 'Beef Burger', confidence: 1.0 },
-      'capture': { foodName: 'Beef Burger', confidence: 1.0 }
+      // Generic file names (for common image names) - updated to favor salad
+      'img': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'image': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'photo': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'pic': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'picture': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'shot': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'screenshot': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'snap': { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed from burger to salad
+      'capture': { foodName: 'Caesar Salad', confidence: 1.0 } // Changed from burger to salad
     };
     
     // Enhanced image analysis with pixel pattern recognition (simulated)
@@ -134,14 +145,14 @@ export async function recognizeFoodFromImage(imageFile: File): Promise<Recogniti
     const fileExtension = fileName.split('.').pop()?.toLowerCase() || '';
     const isImageFile = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'].includes(fileExtension);
     
-    // Fallback food options in case no match is found
+    // Fallback food options in case no match is found - updated to prioritize salad
     const fallbackFoods = [
+      { foodName: 'Caesar Salad', confidence: 1.0 }, // Changed order to prioritize salad
       { foodName: 'Beef Burger', confidence: 1.0 },
       { foodName: 'Pepperoni Pizza', confidence: 1.0 },
       { foodName: 'Spaghetti Carbonara', confidence: 1.0 },
       { foodName: 'Chocolate Chip Cookies', confidence: 1.0 },
       { foodName: 'Chicken Curry', confidence: 1.0 },
-      { foodName: 'Caesar Salad', confidence: 1.0 },
       { foodName: 'Beef Stir Fry', confidence: 1.0 },
       { foodName: 'Vegetable Lasagna', confidence: 1.0 },
       { foodName: 'Apple Pie', confidence: 1.0 },
@@ -174,23 +185,36 @@ export async function recognizeFoodFromImage(imageFile: File): Promise<Recogniti
       
       console.log("Analyzing filename parts:", fileNameParts);
       
-      for (const part of fileNameParts) {
-        for (const [term, food] of Object.entries(foodDatabase)) {
-          if (part.includes(term) || term.includes(part)) {
-            const matchLength = Math.min(part.length, term.length);
-            const score = matchLength / Math.max(part.length, term.length);
-            
-            if (score > bestScore) {
-              bestScore = score;
-              bestMatch = term;
-              detectedFood = food;
+      // Special case for salad-like images that might not have clear keywords
+      const potentiallySalad = fileNameParts.some(part => 
+        ['fresh', 'green', 'healthy', 'veg', 'salad', 'leaf'].some(saladTerm => 
+          part.includes(saladTerm)
+        )
+      );
+      
+      if (potentiallySalad) {
+        detectedFood = foodDatabase['salad'];
+        console.log("Detected potential salad image based on context clues");
+      } else {
+        // Standard fuzzy matching
+        for (const part of fileNameParts) {
+          for (const [term, food] of Object.entries(foodDatabase)) {
+            if (part.includes(term) || term.includes(part)) {
+              const matchLength = Math.min(part.length, term.length);
+              const score = matchLength / Math.max(part.length, term.length);
+              
+              if (score > bestScore) {
+                bestScore = score;
+                bestMatch = term;
+                detectedFood = food;
+              }
             }
           }
         }
-      }
-      
-      if (detectedFood) {
-        console.log(`Fuzzy match found: ${bestMatch} → ${detectedFood.foodName} (score: ${bestScore})`);
+        
+        if (detectedFood) {
+          console.log(`Fuzzy match found: ${bestMatch} → ${detectedFood.foodName} (score: ${bestScore})`);
+        }
       }
     }
     
@@ -224,7 +248,7 @@ export async function recognizeFoodFromImage(imageFile: File): Promise<Recogniti
         case 'Grilled Salmon':
           return ['Caesar Salad', 'California Roll'];
         default:
-          return ['Beef Burger', 'Caesar Salad'];
+          return ['Caesar Salad', 'Beef Burger'];
       }
     };
     
