@@ -78,7 +78,7 @@ export async function recognizeFoodFromImage(imageFile: File): Promise<Recogniti
       'slice': { foodName: 'Pepperoni Pizza', confidence: 1.0 },
       
       'noodles': { foodName: 'Spaghetti Carbonara', confidence: 1.0 },
-      'sauce': { foodName: 'Spaghetti Carbonara', confidence: 1.0 },
+      'pasta_sauce': { foodName: 'Spaghetti Carbonara', confidence: 1.0 }, // Changed from 'sauce' to 'pasta_sauce'
       'alfredo': { foodName: 'Spaghetti Carbonara', confidence: 1.0 },
       'penne': { foodName: 'Spaghetti Carbonara', confidence: 1.0 },
       'macaroni': { foodName: 'Spaghetti Carbonara', confidence: 1.0 },
@@ -102,7 +102,7 @@ export async function recognizeFoodFromImage(imageFile: File): Promise<Recogniti
       
       'spicy': { foodName: 'Chicken Curry', confidence: 1.0 },
       'indian': { foodName: 'Chicken Curry', confidence: 1.0 },
-      'sauce': { foodName: 'Chicken Curry', confidence: 1.0 },
+      'curry_sauce': { foodName: 'Chicken Curry', confidence: 1.0 }, // Changed from 'sauce' to 'curry_sauce'
       'rice': { foodName: 'Chicken Curry', confidence: 1.0 },
       
       'food': { foodName: 'Beef Burger', confidence: 1.0 },
