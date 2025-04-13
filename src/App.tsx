@@ -1,4 +1,5 @@
 
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,32 +17,37 @@ import ShoppingListPage from "./pages/ShoppingListPage";
 import AuthPage from "./pages/AuthPage";
 import NotFound from "./pages/NotFound";
 
+// Create a new QueryClient instance
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <UserProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/welcome" element={<LandingPage />} />
-              <Route path="/recipe/:id" element={<RecipeDetail />} />
-              <Route path="/recipes" element={<RecipesPage />} />
-              <Route path="/favorites" element={<FavoritesPage />} />
-              <Route path="/meal-plan" element={<MealPlanPage />} />
-              <Route path="/shopping-list" element={<ShoppingListPage />} />
-              <Route path="/login" element={<AuthPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </UserProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  return (
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <UserProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/welcome" element={<LandingPage />} />
+                  <Route path="/recipe/:id" element={<RecipeDetail />} />
+                  <Route path="/recipes" element={<RecipesPage />} />
+                  <Route path="/favorites" element={<FavoritesPage />} />
+                  <Route path="/meal-plan" element={<MealPlanPage />} />
+                  <Route path="/shopping-list" element={<ShoppingListPage />} />
+                  <Route path="/login" element={<AuthPage />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </BrowserRouter>
+            </TooltipProvider>
+          </UserProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </React.StrictMode>
+  );
+};
 
 export default App;
