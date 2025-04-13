@@ -37,16 +37,6 @@ const RecipeDetail = () => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const [selectedMealType, setSelectedMealType] = useState<"breakfast" | "lunch" | "dinner" | "snack">("dinner");
 
-  // Mock nutritional data for demo
-  const mockNutritionalInfo = {
-    calories: 450,
-    protein: 22,
-    carbs: 48,
-    fat: 18,
-    fiber: 6,
-    sugar: 8
-  };
-
   useEffect(() => {
     const fetchRecipe = async () => {
       setLoading(true);
@@ -57,11 +47,7 @@ const RecipeDetail = () => {
         const foundRecipe = allRecipes.find(r => r.id === id);
         
         if (foundRecipe) {
-          // Add mock nutritional info for demo purposes
-          setRecipe({
-            ...foundRecipe,
-            nutritionalInfo: mockNutritionalInfo
-          });
+          setRecipe(foundRecipe);
         } else {
           toast.error("Recipe not found");
         }
@@ -148,7 +134,7 @@ const RecipeDetail = () => {
             <img 
               src={recipe.image} 
               alt={recipe.name} 
-              className="w-full h-full object-cover" 
+              className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent"></div>
           </div>
@@ -156,14 +142,14 @@ const RecipeDetail = () => {
         
         <div className="container mx-auto px-4 py-8 -mt-20 relative z-10">
           <div className="max-w-5xl mx-auto">
-            <Button variant="outline" asChild className="mb-4 bg-background/80 backdrop-blur-sm">
+            <Button variant="outline" asChild className="mb-4 bg-background/80 backdrop-blur-sm transition-all duration-300 hover:bg-background">
               <Link to="/">
                 <ChevronLeft className="mr-2 h-4 w-4" />
                 Back
               </Link>
             </Button>
             
-            <div className="bg-background rounded-lg shadow-sm p-6 md:p-8">
+            <div className="bg-background rounded-lg shadow-sm p-6 md:p-8 animate-fade-in">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
                 <div>
                   <h1 className="text-3xl md:text-4xl font-bold mb-2">{recipe.name}</h1>
@@ -173,7 +159,7 @@ const RecipeDetail = () => {
                     {recipe.tags.map((tag, index) => (
                       <span 
                         key={index} 
-                        className="px-3 py-1 bg-secondary/30 text-secondary-foreground rounded-full text-sm"
+                        className="px-3 py-1 bg-secondary/30 text-secondary-foreground rounded-full text-sm transition-all duration-300 hover:bg-secondary/50"
                       >
                         {tag}
                       </span>
@@ -185,7 +171,7 @@ const RecipeDetail = () => {
                   <Button 
                     variant={isFavorite(recipe.id) ? "default" : "outline"}
                     onClick={handleFavoriteToggle}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 transition-all duration-300 hover:scale-105"
                   >
                     <Heart className={`h-4 w-4 ${isFavorite(recipe.id) ? "fill-current" : ""}`} />
                     {isFavorite(recipe.id) ? "Saved" : "Save"}
@@ -199,6 +185,7 @@ const RecipeDetail = () => {
                   <Button 
                     variant="outline" 
                     onClick={handleAddToShoppingList}
+                    className="transition-all duration-300 hover:scale-105"
                   >
                     <ShoppingCart className="h-4 w-4 mr-2" />
                     Add to List
@@ -206,12 +193,12 @@ const RecipeDetail = () => {
                   
                   <Dialog open={isAddingToMealPlan} onOpenChange={setIsAddingToMealPlan}>
                     <DialogTrigger asChild>
-                      <Button variant="outline">
+                      <Button variant="outline" className="transition-all duration-300 hover:scale-105">
                         <CalendarPlus className="h-4 w-4 mr-2" />
                         Meal Plan
                       </Button>
                     </DialogTrigger>
-                    <DialogContent>
+                    <DialogContent className="sm:max-w-md">
                       <DialogHeader>
                         <DialogTitle>Add to Meal Plan</DialogTitle>
                       </DialogHeader>
@@ -278,13 +265,13 @@ const RecipeDetail = () => {
               
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="md:col-span-2 space-y-8">
-                  <div>
+                  <div className="animate-fade-in" style={{ animationDelay: "100ms" }}>
                     <h2 className="text-xl font-semibold mb-4">Ingredients</h2>
                     <ul className="space-y-2">
                       {recipe.ingredients.map((ingredient, index) => (
-                        <li key={index} className="flex items-start">
+                        <li key={index} className="flex items-start animate-slide-in" style={{ animationDelay: `${index * 50}ms` }}>
                           <span className="inline-block h-2 w-2 rounded-full bg-primary mt-1.5 mr-2"></span>
-                          <span>{ingredient}</span>
+                          <span className="transition-colors duration-300 hover:text-primary">{ingredient}</span>
                         </li>
                       ))}
                     </ul>
@@ -292,22 +279,22 @@ const RecipeDetail = () => {
                   
                   <Separator />
                   
-                  <div>
+                  <div className="animate-fade-in" style={{ animationDelay: "200ms" }}>
                     <h2 className="text-xl font-semibold mb-4">Instructions</h2>
                     <ol className="space-y-4">
                       {recipe.instructions.map((instruction, index) => (
-                        <li key={index} className="flex">
-                          <span className="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-primary/10 text-primary text-sm font-medium mr-3 mt-0.5">
+                        <li key={index} className="flex animate-slide-in" style={{ animationDelay: `${(index + 4) * 50}ms` }}>
+                          <span className="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-primary/10 text-primary text-sm font-medium mr-3 mt-0.5 transition-all duration-300 hover:bg-primary/20">
                             {index + 1}
                           </span>
-                          <span>{instruction}</span>
+                          <span className="transition-colors duration-300 hover:text-primary">{instruction}</span>
                         </li>
                       ))}
                     </ol>
                   </div>
                 </div>
                 
-                <div>
+                <div className="animate-fade-in" style={{ animationDelay: "300ms" }}>
                   {recipe.nutritionalInfo && (
                     <NutritionalInfo nutritionalInfo={recipe.nutritionalInfo} />
                   )}

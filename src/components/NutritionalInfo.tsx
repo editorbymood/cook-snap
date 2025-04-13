@@ -46,7 +46,7 @@ const NutritionalInfo: React.FC<NutritionalInfoProps> = ({ nutritionalInfo }) =>
   const sugarPercentage = sugar ? (sugar / total) * 35 : 0; // Arbitrary scale
 
   return (
-    <Card>
+    <Card className="transition-all duration-300 hover:shadow-lg">
       <CardHeader>
         <CardTitle className="text-lg">Nutritional Information</CardTitle>
       </CardHeader>
