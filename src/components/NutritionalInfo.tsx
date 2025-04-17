@@ -3,6 +3,8 @@ import React from "react";
 import { NutritionalInfo as NutritionalInfoType } from "@/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { InfoCircle } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface NutritionalInfoProps {
   nutritionalInfo: NutritionalInfoType;
@@ -14,8 +16,9 @@ const NutrientBar: React.FC<{
   unit: string; 
   percentage: number;
   color: string;
-}> = ({ label, value, unit, percentage, color }) => {
-  return (
+  tooltip?: string;
+}> = ({ label, value, unit, percentage, color, tooltip }) => {
+  const content = (
     <div className="space-y-1">
       <div className="flex justify-between text-sm">
         <span>{label}</span>
@@ -30,10 +33,30 @@ const NutrientBar: React.FC<{
       />
     </div>
   );
+
+  if (tooltip) {
+    return (
+      <div className="relative group">
+        {content}
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <InfoCircle className="absolute right-0 top-0 h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity cursor-help" />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p className="max-w-xs">{tooltip}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
+    );
+  }
+
+  return content;
 };
 
 const NutritionalInfo: React.FC<NutritionalInfoProps> = ({ nutritionalInfo }) => {
-  const { calories, protein, carbs, fat, fiber, sugar } = nutritionalInfo;
+  const { calories, protein, carbs, fat, fiber, sugar, sodium } = nutritionalInfo;
   
   // Calculate macronutrient percentages (for visual representation)
   const total = protein + carbs + fat;
@@ -44,6 +67,7 @@ const NutritionalInfo: React.FC<NutritionalInfoProps> = ({ nutritionalInfo }) =>
   // Handle optional nutrients
   const fiberPercentage = fiber ? (fiber / total) * 35 : 0; // Arbitrary scale
   const sugarPercentage = sugar ? (sugar / total) * 35 : 0; // Arbitrary scale
+  const sodiumPercentage = sodium ? Math.min((sodium / 2300) * 100, 100) : 0; // Based on recommended daily intake
 
   return (
     <Card className="transition-all duration-300 hover:shadow-lg">
@@ -63,6 +87,7 @@ const NutritionalInfo: React.FC<NutritionalInfoProps> = ({ nutritionalInfo }) =>
             unit="g" 
             percentage={proteinPercentage}
             color="bg-blue-500" 
+            tooltip="Protein is essential for muscle building and repair."
           />
           
           <NutrientBar 
@@ -71,6 +96,7 @@ const NutritionalInfo: React.FC<NutritionalInfoProps> = ({ nutritionalInfo }) =>
             unit="g" 
             percentage={carbsPercentage}
             color="bg-green-500" 
+            tooltip="Carbohydrates are your body's main source of energy."
           />
           
           <NutrientBar 
@@ -79,6 +105,7 @@ const NutritionalInfo: React.FC<NutritionalInfoProps> = ({ nutritionalInfo }) =>
             unit="g" 
             percentage={fatPercentage}
             color="bg-yellow-500" 
+            tooltip="Healthy fats are important for hormone production and cell growth."
           />
           
           {fiber !== undefined && (
@@ -88,6 +115,7 @@ const NutritionalInfo: React.FC<NutritionalInfoProps> = ({ nutritionalInfo }) =>
               unit="g" 
               percentage={fiberPercentage}
               color="bg-orange-500" 
+              tooltip="Fiber aids digestion and helps maintain steady blood sugar levels."
             />
           )}
           
@@ -98,6 +126,18 @@ const NutritionalInfo: React.FC<NutritionalInfoProps> = ({ nutritionalInfo }) =>
               unit="g" 
               percentage={sugarPercentage}
               color="bg-red-500" 
+              tooltip="The amount of natural and added sugars in this recipe."
+            />
+          )}
+          
+          {sodium !== undefined && (
+            <NutrientBar 
+              label="Sodium" 
+              value={sodium} 
+              unit="mg" 
+              percentage={sodiumPercentage}
+              color="bg-purple-500" 
+              tooltip="The recommended daily intake of sodium is less than 2,300mg."
             />
           )}
         </div>

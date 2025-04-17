@@ -17,37 +17,43 @@ import ShoppingListPage from "./pages/ShoppingListPage";
 import AuthPage from "./pages/AuthPage";
 import NotFound from "./pages/NotFound";
 
-// Create a new QueryClient instance
-const queryClient = new QueryClient();
+// Create a new QueryClient instance with optimized settings for production
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000, // 1 minute
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const App = () => {
   return (
-    <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-          <UserProvider>
-            <TooltipProvider>
-              <Toaster />
-              <Sonner />
-              <BrowserRouter>
-                <Routes>
-                  <Route path="/" element={<Navigate to="/welcome" replace />} />
-                  <Route path="/welcome" element={<LandingPage />} />
-                  <Route path="/home" element={<Index />} />
-                  <Route path="/recipe/:id" element={<RecipeDetail />} />
-                  <Route path="/recipes" element={<RecipesPage />} />
-                  <Route path="/favorites" element={<FavoritesPage />} />
-                  <Route path="/meal-plan" element={<MealPlanPage />} />
-                  <Route path="/shopping-list" element={<ShoppingListPage />} />
-                  <Route path="/login" element={<AuthPage />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </BrowserRouter>
-            </TooltipProvider>
-          </UserProvider>
-        </ThemeProvider>
-      </QueryClientProvider>
-    </React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <UserProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Navigate to="/welcome" replace />} />
+                <Route path="/welcome" element={<LandingPage />} />
+                <Route path="/home" element={<Index />} />
+                <Route path="/recipe/:id" element={<RecipeDetail />} />
+                <Route path="/recipes" element={<RecipesPage />} />
+                <Route path="/favorites" element={<FavoritesPage />} />
+                <Route path="/meal-plan" element={<MealPlanPage />} />
+                <Route path="/shopping-list" element={<ShoppingListPage />} />
+                <Route path="/login" element={<AuthPage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </TooltipProvider>
+        </UserProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 };
 
