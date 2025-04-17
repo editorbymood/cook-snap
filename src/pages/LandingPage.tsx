@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 
 const LandingPage = () => {
@@ -89,19 +90,49 @@ const LandingPage = () => {
 
   const popularRecipes = [
     {
+      id: "beef-burger",
       name: "Beef Burger",
       image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=2670&auto=format&fit=crop",
-      calories: 520
+      calories: 520,
+      prepTime: 15,
+      cookTime: 10,
+      tags: ["American", "Fast Food", "Dinner"]
     },
     {
+      id: "california-roll",
       name: "California Roll",
       image: "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?q=80&w=2669&auto=format&fit=crop",
-      calories: 255
+      calories: 255,
+      prepTime: 30,
+      cookTime: 20,
+      tags: ["Japanese", "Seafood", "Sushi"]
     },
     {
+      id: "caesar-salad",
       name: "Caesar Salad",
       image: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=2670&auto=format&fit=crop",
-      calories: 320
+      calories: 320,
+      prepTime: 15,
+      cookTime: 0,
+      tags: ["Salad", "Healthy", "Quick"]
+    },
+    {
+      id: "spaghetti-carbonara",
+      name: "Spaghetti Carbonara",
+      image: "https://images.unsplash.com/photo-1600803907087-f56ffa57d4d5?q=80&w=2574&auto=format&fit=crop",
+      calories: 650,
+      prepTime: 15,
+      cookTime: 15,
+      tags: ["Italian", "Pasta", "Quick Meals"]
+    },
+    {
+      id: "chicken-curry",
+      name: "Chicken Curry",
+      image: "https://images.unsplash.com/photo-1604652013239-3e0237ba661f?q=80&w=2574&auto=format&fit=crop",
+      calories: 480,
+      prepTime: 20,
+      cookTime: 30,
+      tags: ["Indian", "Spicy", "Dinner"]
     }
   ];
 
@@ -203,36 +234,80 @@ const LandingPage = () => {
       {/* Popular Recipes */}
       <section className="py-16 bg-secondary/10">
         <div className="container px-4 mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold mb-10 text-center">Popular Recipes</h2>
-          <Carousel className="mx-auto max-w-4xl">
-            <CarouselContent>
-              {popularRecipes.map((recipe, index) => (
-                <CarouselItem key={index} className="md:basis-1/3">
-                  <div className="p-2">
-                    <div className="rounded-xl overflow-hidden shadow-md bg-background transition-all duration-300 hover:shadow-xl hover:scale-105">
-                      <div className="aspect-video relative overflow-hidden">
-                        <img 
-                          src={recipe.image} 
-                          alt={recipe.name} 
-                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                          <div className="p-4 w-full">
-                            <p className="text-white font-medium">{recipe.calories} calories</p>
+          <h2 className="text-3xl font-bold mb-3 text-center">Popular Recipes</h2>
+          <p className="text-muted-foreground text-center mb-10 max-w-lg mx-auto">
+            Discover our most loved recipes that everyone's cooking right now
+          </p>
+          
+          <div className="relative">
+            <Carousel className="mx-auto max-w-5xl">
+              <CarouselContent>
+                {popularRecipes.map((recipe, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
+                    <div 
+                      onClick={() => navigate(`/recipe/${recipe.id}`)}
+                      className="h-full"
+                    >
+                      <div className="bg-background rounded-xl overflow-hidden shadow-md h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer">
+                        <div className="aspect-[4/3] relative overflow-hidden">
+                          <img 
+                            src={recipe.image} 
+                            alt={recipe.name} 
+                            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                          />
+                          <div className="absolute top-3 right-3">
+                            <Badge variant="secondary" className="bg-background/70 backdrop-blur-sm">
+                              {recipe.calories} cal
+                            </Badge>
+                          </div>
+                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                            <h3 className="font-semibold text-white text-lg">{recipe.name}</h3>
                           </div>
                         </div>
-                      </div>
-                      <div className="p-4">
-                        <h3 className="font-semibold">{recipe.name}</h3>
+                        <div className="p-4">
+                          <div className="flex items-center justify-between text-sm text-muted-foreground mb-3">
+                            <div className="flex items-center gap-1">
+                              <Timer className="h-4 w-4" />
+                              <span>{recipe.prepTime + recipe.cookTime} mins</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              {recipe.tags.slice(0, 2).map((tag, i) => (
+                                <Badge key={i} variant="outline" className="text-xs">
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </div>
+                          </div>
+                          <Button 
+                            variant="secondary" 
+                            size="sm" 
+                            className="w-full"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/recipe/${recipe.id}`);
+                            }}
+                          >
+                            View Recipe
+                          </Button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-0" />
-            <CarouselNext className="right-0" />
-          </Carousel>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="hidden md:block">
+                <CarouselPrevious className="-left-4 bg-background shadow-md hover:bg-background/90" />
+                <CarouselNext className="-right-4 bg-background shadow-md hover:bg-background/90" />
+              </div>
+            </Carousel>
+            
+            <div className="mt-6 text-center">
+              <Button variant="outline" onClick={() => navigate('/recipes')} className="group">
+                View All Recipes
+                <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
 
