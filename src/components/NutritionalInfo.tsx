@@ -1,9 +1,8 @@
-
 import React from "react";
 import { NutritionalInfo as NutritionalInfoType } from "@/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { InfoCircle } from "lucide-react";
+import { Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface NutritionalInfoProps {
@@ -41,7 +40,7 @@ const NutrientBar: React.FC<{
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <InfoCircle className="absolute right-0 top-0 h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity cursor-help" />
+              <Info className="absolute right-0 top-0 h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity cursor-help" />
             </TooltipTrigger>
             <TooltipContent>
               <p className="max-w-xs">{tooltip}</p>
@@ -58,16 +57,14 @@ const NutrientBar: React.FC<{
 const NutritionalInfo: React.FC<NutritionalInfoProps> = ({ nutritionalInfo }) => {
   const { calories, protein, carbs, fat, fiber, sugar, sodium } = nutritionalInfo;
   
-  // Calculate macronutrient percentages (for visual representation)
   const total = protein + carbs + fat;
   const proteinPercentage = (protein / total) * 100;
   const carbsPercentage = (carbs / total) * 100;
   const fatPercentage = (fat / total) * 100;
   
-  // Handle optional nutrients
-  const fiberPercentage = fiber ? (fiber / total) * 35 : 0; // Arbitrary scale
-  const sugarPercentage = sugar ? (sugar / total) * 35 : 0; // Arbitrary scale
-  const sodiumPercentage = sodium ? Math.min((sodium / 2300) * 100, 100) : 0; // Based on recommended daily intake
+  const fiberPercentage = fiber ? (fiber / total) * 35 : 0;
+  const sugarPercentage = sugar ? (sugar / total) * 35 : 0;
+  const sodiumPercentage = sodium ? Math.min((sodium / 2300) * 100, 100) : 0;
 
   return (
     <Card className="transition-all duration-300 hover:shadow-lg">
