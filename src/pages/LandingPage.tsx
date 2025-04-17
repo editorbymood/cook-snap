@@ -1,4 +1,3 @@
-
 import Hero from "@/components/landing/Hero";
 import Features from "@/components/landing/Features";
 import Testimonials from "@/components/landing/Testimonials";
@@ -73,6 +72,60 @@ const LandingPage = () => {
       servings: 4,
       tags: ["Indian", "Spicy", "Dinner"],
       nutritionalInfo: { calories: 480, protein: 35, carbs: 15, fat: 28 }
+    },
+    {
+      id: "spinach-mushroom-risotto",
+      name: "Spinach Mushroom Risotto",
+      description: "Creamy Italian risotto with fresh spinach and sautéed mushrooms.",
+      image: "https://images.unsplash.com/photo-1673845532980-90c6614d9511?q=80&w=2574&auto=format&fit=crop",
+      ingredients: ["Arborio rice", "Spinach", "Mushrooms", "Onion", "Vegetable broth", "Parmesan cheese"],
+      instructions: [
+        "Sauté mushrooms and onions",
+        "Add rice and gradually stir in broth",
+        "Cook until creamy",
+        "Fold in spinach and cheese"
+      ],
+      prepTime: "15",
+      cookTime: "30",
+      servings: 4,
+      tags: ["Vegetarian", "Italian", "Dinner"],
+      nutritionalInfo: { calories: 380, protein: 12, carbs: 65, fat: 8 }
+    },
+    {
+      id: "quinoa-buddha-bowl",
+      name: "Quinoa Buddha Bowl",
+      description: "Nutrient-rich bowl with quinoa, roasted vegetables, and tahini dressing.",
+      image: "https://images.unsplash.com/photo-1590301157890-4810ed352733?q=80&w=2575&auto=format&fit=crop",
+      ingredients: ["Quinoa", "Sweet potato", "Chickpeas", "Kale", "Avocado", "Tahini"],
+      instructions: [
+        "Cook quinoa",
+        "Roast sweet potatoes and chickpeas",
+        "Prepare tahini dressing",
+        "Assemble bowl with fresh ingredients"
+      ],
+      prepTime: "20",
+      cookTime: "25",
+      servings: 2,
+      tags: ["Vegetarian", "Healthy", "Lunch"],
+      nutritionalInfo: { calories: 420, protein: 15, carbs: 55, fat: 18 }
+    },
+    {
+      id: "vegetable-pad-thai",
+      name: "Vegetable Pad Thai",
+      description: "Classic Thai noodle dish with tofu and fresh vegetables.",
+      image: "https://images.unsplash.com/photo-1637806931098-af5d7cea9d67?q=80&w=2670&auto=format&fit=crop",
+      ingredients: ["Rice noodles", "Tofu", "Bean sprouts", "Carrots", "Green onions", "Peanuts"],
+      instructions: [
+        "Soak noodles",
+        "Stir-fry tofu and vegetables",
+        "Add sauce and noodles",
+        "Garnish with peanuts and lime"
+      ],
+      prepTime: "20",
+      cookTime: "15",
+      servings: 4,
+      tags: ["Vegetarian", "Thai", "Dinner"],
+      nutritionalInfo: { calories: 380, protein: 14, carbs: 58, fat: 12 }
     }
   ];
 
