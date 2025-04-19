@@ -8,7 +8,8 @@ import RecipeCard from "@/components/RecipeCard";
 import SearchBar from "@/components/SearchBar";
 import FilterBar from "@/components/FilterBar";
 import { toast } from "sonner";
-import { Loader2 } from "lucide-react";
+import { Loader2, Vegan, Fish } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const RecipesPage = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -36,11 +37,18 @@ const RecipesPage = () => {
       setIsLoading(true);
       try {
         const data = await searchRecipes(searchQuery);
-        setRecipes(data);
+        // Filter out beef dishes
+        const filteredData = data.filter(recipe => 
+          !recipe.name.toLowerCase().includes('beef') &&
+          !recipe.ingredients.some(ingredient => 
+            ingredient.toLowerCase().includes('beef')
+          )
+        );
+        setRecipes(filteredData);
         
         // Extract all unique tags
         const tags = new Set<string>();
-        data.forEach(recipe => {
+        filteredData.forEach(recipe => {
           recipe.tags.forEach(tag => tags.add(tag));
         });
         setAllTags(Array.from(tags).sort());
@@ -77,6 +85,14 @@ const RecipesPage = () => {
     setSelectedTags(tags);
   };
 
+  const vegetarianRecipes = filteredRecipes.filter(recipe => 
+    recipe.tags.includes('Vegetarian') || recipe.tags.includes('Vegan')
+  );
+
+  const nonVegetarianRecipes = filteredRecipes.filter(recipe => 
+    !recipe.tags.includes('Vegetarian') && !recipe.tags.includes('Vegan')
+  );
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -104,11 +120,43 @@ const RecipesPage = () => {
               <Loader2 className="h-8 w-8 text-primary animate-spin" />
             </div>
           ) : filteredRecipes.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 py-6">
-              {filteredRecipes.map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} />
-              ))}
-            </div>
+            <Tabs defaultValue="all" className="w-full">
+              <TabsList className="mb-6">
+                <TabsTrigger value="all">All Recipes</TabsTrigger>
+                <TabsTrigger value="veg" className="flex items-center gap-2">
+                  <Vegan className="h-4 w-4" />
+                  Vegetarian
+                </TabsTrigger>
+                <TabsTrigger value="nonveg" className="flex items-center gap-2">
+                  <Fish className="h-4 w-4" />
+                  Non Vegetarian
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="all">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {filteredRecipes.map((recipe) => (
+                    <RecipeCard key={recipe.id} recipe={recipe} />
+                  ))}
+                </div>
+              </TabsContent>
+
+              <TabsContent value="veg">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {vegetarianRecipes.map((recipe) => (
+                    <RecipeCard key={recipe.id} recipe={recipe} />
+                  ))}
+                </div>
+              </TabsContent>
+
+              <TabsContent value="nonveg">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {nonVegetarianRecipes.map((recipe) => (
+                    <RecipeCard key={recipe.id} recipe={recipe} />
+                  ))}
+                </div>
+              </TabsContent>
+            </Tabs>
           ) : (
             <div className="text-center py-12">
               <h3 className="text-xl font-medium mb-2">No recipes found</h3>
