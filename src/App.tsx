@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -16,8 +15,10 @@ import MealPlanPage from "./pages/MealPlanPage";
 import ShoppingListPage from "./pages/ShoppingListPage";
 import AuthPage from "./pages/AuthPage";
 import NotFound from "./pages/NotFound";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import PrivacyPage from "./pages/PrivacyPage";
 
-// Create a new QueryClient instance with optimized settings for production
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -47,6 +48,9 @@ const App = () => {
                 <Route path="/meal-plan" element={<MealPlanPage />} />
                 <Route path="/shopping-list" element={<ShoppingListPage />} />
                 <Route path="/login" element={<AuthPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
