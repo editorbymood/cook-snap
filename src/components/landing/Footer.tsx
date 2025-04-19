@@ -1,4 +1,6 @@
 
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
   return (
     <footer className="bg-background py-10 border-t">
@@ -9,10 +11,10 @@ const Footer = () => {
             <p className="text-muted-foreground">Discover recipes with a simple photo</p>
           </div>
           <div className="flex gap-8">
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">About</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Recipes</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Privacy</a>
+            <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
+            <Link to="/recipes" className="text-muted-foreground hover:text-foreground transition-colors">Recipes</Link>
+            <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link>
+            <Link to="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">

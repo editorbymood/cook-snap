@@ -4,18 +4,21 @@ import { Star } from "lucide-react";
 const testimonials = [
   {
     quote: "CookSnap revolutionized my cooking experience! I just snap a photo and get the perfect recipe every time.",
-    author: "Jamie L.",
-    role: "Home Cook"
+    author: "Diya Gupta",
+    role: "Food Enthusiast",
+    rating: 5
   },
   {
     quote: "The recipe recognition is incredibly accurate. It's like having a personal chef in my pocket.",
-    author: "Sarah M.",
-    role: "Food Enthusiast"
+    author: "Janvi Gaba",
+    role: "Home Cook",
+    rating: 4
   },
   {
     quote: "I've discovered so many new recipes I would have never tried. The nutritional info helps me stay on track with my goals.",
-    author: "Alex T.",
-    role: "Fitness Coach"
+    author: "Samridhi Sharma",
+    role: "Fitness Coach",
+    rating: 4
   }
 ];
 
@@ -27,9 +30,12 @@ const Testimonials = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="bg-background rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg">
-              <div className="flex items-center gap-2 mb-6">
+              <div className="flex items-center gap-1 mb-6">
                 {Array(5).fill(0).map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  <Star
+                    key={i}
+                    className={`h-5 w-5 ${i < testimonial.rating ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200'}`}
+                  />
                 ))}
               </div>
               <p className="mb-6 text-muted-foreground italic">"{testimonial.quote}"</p>
