@@ -98,6 +98,7 @@ For any questions or suggestions, feel free to reach out:
 
 - GitHub: [@editorbymood](https://github.com/editorbymood)
 - Email: contact.shanket@gmail.com
+- LinkedIn: [SHANKET KUMAR](https://www.linkedin.com/in/shanket-kumar-codeex/)
 
 ---
 
