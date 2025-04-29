@@ -6,7 +6,7 @@ import { Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface NutritionalInfoProps {
-  nutritionalInfo: NutritionalInfoType;
+  info: NutritionalInfoType;
 }
 
 const NutrientBar: React.FC<{ 
@@ -54,17 +54,12 @@ const NutrientBar: React.FC<{
   return content;
 };
 
-const NutritionalInfo: React.FC<NutritionalInfoProps> = ({ nutritionalInfo }) => {
-  const { calories, protein, carbs, fat, fiber, sugar, sodium } = nutritionalInfo;
+const NutritionalInfo: React.FC<NutritionalInfoProps> = ({ info }) => {
+  const totalNutrients = info.protein + info.carbs + info.fat;
   
-  const total = protein + carbs + fat;
-  const proteinPercentage = (protein / total) * 100;
-  const carbsPercentage = (carbs / total) * 100;
-  const fatPercentage = (fat / total) * 100;
-  
-  const fiberPercentage = fiber ? (fiber / total) * 35 : 0;
-  const sugarPercentage = sugar ? (sugar / total) * 35 : 0;
-  const sodiumPercentage = sodium ? Math.min((sodium / 2300) * 100, 100) : 0;
+  const calculatePercentage = (value: number) => {
+    return (value / totalNutrients) * 100;
+  };
 
   return (
     <Card className="transition-all duration-300 hover:shadow-lg">
@@ -73,66 +68,66 @@ const NutritionalInfo: React.FC<NutritionalInfoProps> = ({ nutritionalInfo }) =>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="text-center mb-4">
-          <div className="text-3xl font-bold">{calories}</div>
+          <div className="text-3xl font-bold">{info.calories}</div>
           <div className="text-sm text-muted-foreground">calories per serving</div>
         </div>
         
         <div className="space-y-3">
           <NutrientBar 
             label="Protein" 
-            value={protein} 
+            value={info.protein} 
             unit="g" 
-            percentage={proteinPercentage}
+            percentage={calculatePercentage(info.protein)}
             color="bg-blue-500" 
             tooltip="Protein is essential for muscle building and repair."
           />
           
           <NutrientBar 
             label="Carbs" 
-            value={carbs} 
+            value={info.carbs} 
             unit="g" 
-            percentage={carbsPercentage}
+            percentage={calculatePercentage(info.carbs)}
             color="bg-green-500" 
             tooltip="Carbohydrates are your body's main source of energy."
           />
           
           <NutrientBar 
             label="Fat" 
-            value={fat} 
+            value={info.fat} 
             unit="g" 
-            percentage={fatPercentage}
+            percentage={calculatePercentage(info.fat)}
             color="bg-yellow-500" 
             tooltip="Healthy fats are important for hormone production and cell growth."
           />
           
-          {fiber !== undefined && (
+          {info.fiber !== undefined && (
             <NutrientBar 
               label="Fiber" 
-              value={fiber} 
+              value={info.fiber} 
               unit="g" 
-              percentage={fiberPercentage}
+              percentage={calculatePercentage(info.fiber)}
               color="bg-orange-500" 
               tooltip="Fiber aids digestion and helps maintain steady blood sugar levels."
             />
           )}
           
-          {sugar !== undefined && (
+          {info.sugar !== undefined && (
             <NutrientBar 
               label="Sugar" 
-              value={sugar} 
+              value={info.sugar} 
               unit="g" 
-              percentage={sugarPercentage}
+              percentage={calculatePercentage(info.sugar)}
               color="bg-red-500" 
               tooltip="The amount of natural and added sugars in this recipe."
             />
           )}
           
-          {sodium !== undefined && (
+          {info.sodium !== undefined && (
             <NutrientBar 
               label="Sodium" 
-              value={sodium} 
+              value={info.sodium} 
               unit="mg" 
-              percentage={sodiumPercentage}
+              percentage={calculatePercentage(info.sodium)}
               color="bg-purple-500" 
               tooltip="The recommended daily intake of sodium is less than 2,300mg."
             />

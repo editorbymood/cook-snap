@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import { useUser } from "@/contexts/UserContext";
@@ -25,8 +24,8 @@ const FavoritesPage = () => {
           user.favorites.includes(recipe.id)
         );
         setFavoriteRecipes(favorites);
-      } catch (error) {
-        console.error("Error fetching favorite recipes:", error);
+      } catch (error: unknown) {
+        console.error("Error fetching favorite recipes:", error instanceof Error ? error.message : String(error));
       } finally {
         setIsLoading(false);
       }

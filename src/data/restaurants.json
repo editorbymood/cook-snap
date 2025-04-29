@@ -1,0 +1,1284 @@
+{
+  "restaurants": [
+    {
+      "id": "1",
+      "name": "Karim's",
+      "cuisine": "Mughlai",
+      "rating": 4.7,
+      "deliveryTime": "30-45 min",
+      "location": "Jama Masjid",
+      "minOrder": 200,
+      "deliveryFee": 40,
+      "isOpen": true,
+      "website": "https://karimhotels.com/",
+      "menu": [
+        {
+          "id": "1",
+          "name": "Mutton Korma",
+          "description": "Tender mutton cooked in rich gravy with aromatic spices",
+          "price": 450,
+          "image": "/images/mutton-korma.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        },
+        {
+          "id": "2",
+          "name": "Chicken Biryani",
+          "description": "Fragrant basmati rice with succulent chicken pieces",
+          "price": 350,
+          "image": "/images/chicken-biryani.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Sagar Ratna",
+      "cuisine": "South Indian",
+      "rating": 4.5,
+      "deliveryTime": "25-35 min",
+      "location": "Connaught Place",
+      "minOrder": 150,
+      "deliveryFee": 30,
+      "isOpen": true,
+      "website": "https://www.sagarratna.com/",
+      "menu": [
+        {
+          "id": "3",
+          "name": "Masala Dosa",
+          "description": "Crispy rice crepe filled with spiced potato",
+          "price": 180,
+          "image": "/images/masala-dosa.jpg",
+          "category": "Breakfast",
+          "isVeg": true
+        },
+        {
+          "id": "4",
+          "name": "Idli Sambar",
+          "description": "Steamed rice cakes with lentil soup",
+          "price": 120,
+          "image": "/images/idli-sambar.jpg",
+          "category": "Breakfast",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Haldiram's",
+      "cuisine": "North Indian",
+      "rating": 4.6,
+      "deliveryTime": "20-30 min",
+      "location": "Chandni Chowk",
+      "minOrder": 100,
+      "deliveryFee": 25,
+      "isOpen": true,
+      "website": "https://www.haldiram.com/",
+      "menu": [
+        {
+          "id": "5",
+          "name": "Chole Bhature",
+          "description": "Spicy chickpeas with deep-fried bread",
+          "price": 150,
+          "image": "/images/chole-bhature.jpg",
+          "category": "Main Course",
+          "isVeg": true
+        },
+        {
+          "id": "6",
+          "name": "Raj Kachori",
+          "description": "Crispy shell filled with yogurt and chutneys",
+          "price": 120,
+          "image": "/images/raj-kachori.jpg",
+          "category": "Snacks",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Wenger's",
+      "cuisine": "Bakery",
+      "rating": 4.4,
+      "deliveryTime": "15-25 min",
+      "location": "Connaught Place",
+      "minOrder": 100,
+      "deliveryFee": 20,
+      "isOpen": true,
+      "website": "https://www.wengersdelhi.com/",
+      "menu": [
+        {
+          "id": "7",
+          "name": "Chocolate Pastry",
+          "description": "Rich chocolate cake with cream",
+          "price": 80,
+          "image": "/images/chocolate-pastry.jpg",
+          "category": "Dessert",
+          "isVeg": true
+        },
+        {
+          "id": "8",
+          "name": "Chicken Puff",
+          "description": "Flaky pastry with spiced chicken filling",
+          "price": 60,
+          "image": "/images/chicken-puff.jpg",
+          "category": "Snacks",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Domino's Pizza",
+      "cuisine": "Italian",
+      "rating": 4.3,
+      "deliveryTime": "30-40 min",
+      "location": "Multiple Locations",
+      "minOrder": 199,
+      "deliveryFee": 40,
+      "isOpen": true,
+      "website": "https://www.dominos.co.in/",
+      "menu": [
+        {
+          "id": "9",
+          "name": "Margherita Pizza",
+          "description": "Classic pizza with tomato sauce and mozzarella cheese",
+          "price": 199,
+          "image": "/images/margherita.jpg",
+          "category": "Pizza",
+          "isVeg": true
+        },
+        {
+          "id": "10",
+          "name": "Pepperoni Pizza",
+          "description": "Spicy pepperoni with extra cheese",
+          "price": 299,
+          "image": "/images/pepperoni.jpg",
+          "category": "Pizza",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "McDonald's",
+      "cuisine": "Fast Food",
+      "rating": 4.2,
+      "deliveryTime": "20-30 min",
+      "location": "Multiple Locations",
+      "minOrder": 150,
+      "deliveryFee": 35,
+      "isOpen": true,
+      "website": "https://www.mcdonaldsindia.com/",
+      "menu": [
+        {
+          "id": "11",
+          "name": "McAloo Tikki Burger",
+          "description": "Spicy potato patty with special sauce",
+          "price": 60,
+          "image": "/images/mcaloo.jpg",
+          "category": "Burgers",
+          "isVeg": true
+        },
+        {
+          "id": "12",
+          "name": "McChicken Burger",
+          "description": "Crispy chicken patty with lettuce and mayo",
+          "price": 120,
+          "image": "/images/mcchicken.jpg",
+          "category": "Burgers",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "KFC",
+      "cuisine": "Fast Food",
+      "rating": 4.1,
+      "deliveryTime": "25-35 min",
+      "location": "Multiple Locations",
+      "minOrder": 200,
+      "deliveryFee": 40,
+      "isOpen": true,
+      "website": "https://online.kfc.co.in/",
+      "menu": [
+        {
+          "id": "13",
+          "name": "Hot & Crispy Chicken",
+          "description": "Spicy fried chicken with 11 herbs and spices",
+          "price": 250,
+          "image": "/images/hot-crispy.jpg",
+          "category": "Chicken",
+          "isVeg": false
+        },
+        {
+          "id": "14",
+          "name": "Zinger Burger",
+          "description": "Crispy chicken fillet with spicy sauce",
+          "price": 180,
+          "image": "/images/zinger.jpg",
+          "category": "Burgers",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Pizza Hut",
+      "cuisine": "Italian",
+      "rating": 4.3,
+      "deliveryTime": "30-40 min",
+      "location": "Multiple Locations",
+      "minOrder": 299,
+      "deliveryFee": 45,
+      "isOpen": true,
+      "website": "https://www.pizzahut.co.in/",
+      "menu": [
+        {
+          "id": "15",
+          "name": "Veggie Supreme Pizza",
+          "description": "Loaded with fresh vegetables and cheese",
+          "price": 399,
+          "image": "/images/veggie-supreme.jpg",
+          "category": "Pizza",
+          "isVeg": true
+        },
+        {
+          "id": "16",
+          "name": "Chicken Supreme Pizza",
+          "description": "Loaded with chicken and vegetables",
+          "price": 499,
+          "image": "/images/chicken-supreme.jpg",
+          "category": "Pizza",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Burger King",
+      "cuisine": "Fast Food",
+      "rating": 4.2,
+      "deliveryTime": "25-35 min",
+      "location": "Multiple Locations",
+      "minOrder": 199,
+      "deliveryFee": 35,
+      "isOpen": true,
+      "website": "https://www.burgerking.in/",
+      "menu": [
+        {
+          "id": "17",
+          "name": "Whopper",
+          "description": "Flame-grilled beef patty with fresh vegetables",
+          "price": 199,
+          "image": "/images/whopper.jpg",
+          "category": "Burgers",
+          "isVeg": false
+        },
+        {
+          "id": "18",
+          "name": "Veg Whopper",
+          "description": "Plant-based patty with fresh vegetables",
+          "price": 179,
+          "image": "/images/veg-whopper.jpg",
+          "category": "Burgers",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Subway",
+      "cuisine": "Fast Food",
+      "rating": 4.0,
+      "deliveryTime": "20-30 min",
+      "location": "Multiple Locations",
+      "minOrder": 150,
+      "deliveryFee": 30,
+      "isOpen": true,
+      "website": "https://www.subway.com/en-IN",
+      "menu": [
+        {
+          "id": "19",
+          "name": "Veggie Delite Sub",
+          "description": "Fresh vegetables with your choice of bread and sauce",
+          "price": 150,
+          "image": "/images/veggie-delite.jpg",
+          "category": "Subs",
+          "isVeg": true
+        },
+        {
+          "id": "20",
+          "name": "Chicken Teriyaki Sub",
+          "description": "Grilled chicken with teriyaki sauce",
+          "price": 200,
+          "image": "/images/chicken-teriyaki.jpg",
+          "category": "Subs",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Nando's",
+      "cuisine": "Portuguese",
+      "rating": 4.4,
+      "deliveryTime": "30-40 min",
+      "location": "Multiple Locations",
+      "minOrder": 300,
+      "deliveryFee": 50,
+      "isOpen": true,
+      "website": "https://www.nandosindia.com/",
+      "menu": [
+        {
+          "id": "21",
+          "name": "Peri-Peri Chicken",
+          "description": "Flame-grilled chicken with peri-peri sauce",
+          "price": 450,
+          "image": "/images/peri-peri.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        },
+        {
+          "id": "22",
+          "name": "Veg Espetada",
+          "description": "Grilled vegetable skewers with peri-peri sauce",
+          "price": 350,
+          "image": "/images/veggie-espetada.jpg",
+          "category": "Main Course",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "name": "The Big Chill",
+      "cuisine": "Italian",
+      "rating": 4.5,
+      "deliveryTime": "30-40 min",
+      "location": "Khan Market",
+      "minOrder": 400,
+      "deliveryFee": 50,
+      "isOpen": true,
+      "website": "https://www.thebigchill.in/",
+      "menu": [
+        {
+          "id": "23",
+          "name": "Pasta Alfredo",
+          "description": "Creamy pasta with parmesan cheese",
+          "price": 350,
+          "image": "/images/alfredo.jpg",
+          "category": "Pasta",
+          "isVeg": true
+        },
+        {
+          "id": "24",
+          "name": "Chocolate Fudge Cake",
+          "description": "Rich chocolate cake with fudge icing",
+          "price": 250,
+          "image": "/images/chocolate-cake.jpg",
+          "category": "Dessert",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Saravana Bhavan",
+      "cuisine": "South Indian",
+      "rating": 4.4,
+      "deliveryTime": "25-35 min",
+      "location": "Connaught Place",
+      "minOrder": 200,
+      "deliveryFee": 30,
+      "isOpen": true,
+      "website": "https://www.saravanabhavan.com/",
+      "menu": [
+        {
+          "id": "25",
+          "name": "Rava Dosa",
+          "description": "Crispy semolina crepe with potato filling",
+          "price": 180,
+          "image": "/images/rava-dosa.jpg",
+          "category": "Breakfast",
+          "isVeg": true
+        },
+        {
+          "id": "26",
+          "name": "Filter Coffee",
+          "description": "Traditional South Indian filter coffee",
+          "price": 50,
+          "image": "/images/filter-coffee.jpg",
+          "category": "Beverages",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Khan Chacha",
+      "cuisine": "Mughlai",
+      "rating": 4.3,
+      "deliveryTime": "30-40 min",
+      "location": "Khan Market",
+      "minOrder": 250,
+      "deliveryFee": 40,
+      "isOpen": true,
+      "website": "https://www.khanchacha.com/",
+      "menu": [
+        {
+          "id": "27",
+          "name": "Chicken Tikka Roll",
+          "description": "Grilled chicken tikka wrapped in roomali roti",
+          "price": 200,
+          "image": "/images/chicken-tikka-roll.jpg",
+          "category": "Rolls",
+          "isVeg": false
+        },
+        {
+          "id": "28",
+          "name": "Paneer Tikka Roll",
+          "description": "Grilled paneer tikka wrapped in roomali roti",
+          "price": 180,
+          "image": "/images/paneer-tikka-roll.jpg",
+          "category": "Rolls",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Cafe Delhi Heights",
+      "cuisine": "Continental",
+      "rating": 4.4,
+      "deliveryTime": "30-40 min",
+      "location": "Multiple Locations",
+      "minOrder": 300,
+      "deliveryFee": 45,
+      "isOpen": true,
+      "website": "https://www.cafedelhiheights.com/",
+      "menu": [
+        {
+          "id": "29",
+          "name": "Loaded Nachos",
+          "description": "Crispy nachos with cheese and salsa",
+          "price": 250,
+          "image": "/images/nachos.jpg",
+          "category": "Starters",
+          "isVeg": true
+        },
+        {
+          "id": "30",
+          "name": "Chicken Wings",
+          "description": "Crispy chicken wings with BBQ sauce",
+          "price": 300,
+          "image": "/images/chicken-wings.jpg",
+          "category": "Starters",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Dilli Haat",
+      "cuisine": "Indian",
+      "rating": 4.6,
+      "deliveryTime": "35-45 min",
+      "location": "INA Market",
+      "minOrder": 250,
+      "deliveryFee": 40,
+      "isOpen": true,
+      "website": "https://www.dillihaat.com/",
+      "menu": [
+        {
+          "id": "31",
+          "name": "Chole Kulche",
+          "description": "Spicy chickpeas with soft bread",
+          "price": 120,
+          "image": "/images/chole-kulche.jpg",
+          "category": "Street Food",
+          "isVeg": true
+        },
+        {
+          "id": "32",
+          "name": "Dahi Bhalla",
+          "description": "Lentil dumplings in yogurt",
+          "price": 100,
+          "image": "/images/dahi-bhalla.jpg",
+          "category": "Street Food",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "name": "Indian Accent",
+      "cuisine": "Modern Indian",
+      "rating": 4.8,
+      "deliveryTime": "40-50 min",
+      "location": "The Lodhi",
+      "minOrder": 1000,
+      "deliveryFee": 100,
+      "isOpen": true,
+      "website": "https://www.indianaccent.com/",
+      "menu": [
+        {
+          "id": "33",
+          "name": "Tandoori Chicken",
+          "description": "Premium chicken marinated in spices",
+          "price": 800,
+          "image": "/images/tandoori-chicken.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        },
+        {
+          "id": "34",
+          "name": "Dal Makhani",
+          "description": "Creamy black lentils",
+          "price": 600,
+          "image": "/images/dal-makhani.jpg",
+          "category": "Main Course",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "name": "Bukhara",
+      "cuisine": "North Indian",
+      "rating": 4.9,
+      "deliveryTime": "45-55 min",
+      "location": "ITC Maurya",
+      "minOrder": 1200,
+      "deliveryFee": 120,
+      "isOpen": true,
+      "website": "https://www.itchotels.com/",
+      "menu": [
+        {
+          "id": "35",
+          "name": "Dal Bukhara",
+          "description": "Signature black lentils",
+          "price": 900,
+          "image": "/images/dal-bukhara.jpg",
+          "category": "Main Course",
+          "isVeg": true
+        },
+        {
+          "id": "36",
+          "name": "Murgh Malai Kebab",
+          "description": "Creamy chicken kebab",
+          "price": 1100,
+          "image": "/images/murgh-malai.jpg",
+          "category": "Starters",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "name": "Dum Pukht",
+      "cuisine": "Awadhi",
+      "rating": 4.8,
+      "deliveryTime": "40-50 min",
+      "location": "ITC Maurya",
+      "minOrder": 1000,
+      "deliveryFee": 100,
+      "isOpen": true,
+      "website": "https://www.itchotels.com/",
+      "menu": [
+        {
+          "id": "37",
+          "name": "Dum Pukht Biryani",
+          "description": "Slow-cooked aromatic rice with meat",
+          "price": 950,
+          "image": "/images/dum-pukht-biryani.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        },
+        {
+          "id": "38",
+          "name": "Kakori Kebab",
+          "description": "Melt-in-mouth lamb kebab",
+          "price": 850,
+          "image": "/images/kakori-kebab.jpg",
+          "category": "Starters",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "name": "Olive Bar & Kitchen",
+      "cuisine": "Mediterranean",
+      "rating": 4.7,
+      "deliveryTime": "35-45 min",
+      "location": "Mehrauli",
+      "minOrder": 800,
+      "deliveryFee": 80,
+      "isOpen": true,
+      "website": "https://www.olivebarandkitchen.com/",
+      "menu": [
+        {
+          "id": "39",
+          "name": "Margherita Pizza",
+          "description": "Classic Italian pizza",
+          "price": 650,
+          "image": "/images/margherita-pizza.jpg",
+          "category": "Pizza",
+          "isVeg": true
+        },
+        {
+          "id": "40",
+          "name": "Pasta Carbonara",
+          "description": "Creamy pasta with bacon",
+          "price": 750,
+          "image": "/images/carbonara.jpg",
+          "category": "Pasta",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "name": "Pind Balluchi",
+      "cuisine": "North Indian",
+      "rating": 4.5,
+      "deliveryTime": "30-40 min",
+      "location": "Multiple Locations",
+      "minOrder": 300,
+      "deliveryFee": 45,
+      "isOpen": true,
+      "website": "https://www.pindballuchi.com/",
+      "menu": [
+        {
+          "id": "41",
+          "name": "Dal Makhani",
+          "description": "Creamy black lentils cooked overnight",
+          "price": 350,
+          "image": "/images/dal-makhani.jpg",
+          "category": "Main Course",
+          "isVeg": true
+        },
+        {
+          "id": "42",
+          "name": "Butter Chicken",
+          "description": "Tender chicken in rich tomato gravy",
+          "price": 450,
+          "image": "/images/butter-chicken.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "name": "Oh! Calcutta",
+      "cuisine": "Bengali",
+      "rating": 4.6,
+      "deliveryTime": "35-45 min",
+      "location": "Connaught Place",
+      "minOrder": 400,
+      "deliveryFee": 50,
+      "isOpen": true,
+      "website": "https://www.ohcalcutta.com/",
+      "menu": [
+        {
+          "id": "43",
+          "name": "Kosha Mangsho",
+          "description": "Slow-cooked mutton in Bengali spices",
+          "price": 550,
+          "image": "/images/kosha-mangsho.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        },
+        {
+          "id": "44",
+          "name": "Chingri Malai Curry",
+          "description": "Prawns in coconut milk gravy",
+          "price": 650,
+          "image": "/images/chingri-malai.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "23",
+      "name": "Dakshin",
+      "cuisine": "South Indian",
+      "rating": 4.7,
+      "deliveryTime": "30-40 min",
+      "location": "Sheraton",
+      "minOrder": 500,
+      "deliveryFee": 60,
+      "isOpen": true,
+      "website": "https://www.marriott.com/",
+      "menu": [
+        {
+          "id": "45",
+          "name": "Chettinad Chicken",
+          "description": "Spicy chicken curry from Tamil Nadu",
+          "price": 550,
+          "image": "/images/chettinad-chicken.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        },
+        {
+          "id": "46",
+          "name": "Avial",
+          "description": "Mixed vegetables in coconut gravy",
+          "price": 450,
+          "image": "/images/avial.jpg",
+          "category": "Main Course",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "24",
+      "name": "Punjab Grill",
+      "cuisine": "Punjabi",
+      "rating": 4.8,
+      "deliveryTime": "35-45 min",
+      "location": "Ambience Mall",
+      "minOrder": 600,
+      "deliveryFee": 70,
+      "isOpen": true,
+      "website": "https://www.punjabgrill.com/",
+      "menu": [
+        {
+          "id": "47",
+          "name": "Dal Punjab",
+          "description": "Signature black dal cooked overnight",
+          "price": 450,
+          "image": "/images/dal-punjab.jpg",
+          "category": "Main Course",
+          "isVeg": true
+        },
+        {
+          "id": "48",
+          "name": "Rara Gosht",
+          "description": "Mutton cooked in rich gravy",
+          "price": 650,
+          "image": "/images/rara-gosht.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "25",
+      "name": "Rajdhani",
+      "cuisine": "Gujarati",
+      "rating": 4.5,
+      "deliveryTime": "25-35 min",
+      "location": "Connaught Place",
+      "minOrder": 300,
+      "deliveryFee": 40,
+      "isOpen": true,
+      "website": "https://www.rajdhani.com/",
+      "menu": [
+        {
+          "id": "49",
+          "name": "Thali",
+          "description": "Complete Gujarati meal with multiple dishes",
+          "price": 400,
+          "image": "/images/gujarati-thali.jpg",
+          "category": "Thali",
+          "isVeg": true
+        },
+        {
+          "id": "50",
+          "name": "Dhokla",
+          "description": "Steamed gram flour cake",
+          "price": 150,
+          "image": "/images/dhokla.jpg",
+          "category": "Snacks",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "26",
+      "name": "Kebabs & Kurries",
+      "cuisine": "Awadhi",
+      "rating": 4.7,
+      "deliveryTime": "30-40 min",
+      "location": "ITC Maurya",
+      "minOrder": 800,
+      "deliveryFee": 80,
+      "isOpen": true,
+      "website": "https://www.itchotels.com/",
+      "menu": [
+        {
+          "id": "51",
+          "name": "Galouti Kebab",
+          "description": "Melt-in-mouth minced meat kebab",
+          "price": 750,
+          "image": "/images/galouti-kebab.jpg",
+          "category": "Starters",
+          "isVeg": false
+        },
+        {
+          "id": "52",
+          "name": "Murg Malai Tikka",
+          "description": "Creamy chicken tikka",
+          "price": 650,
+          "image": "/images/murg-malai-tikka.jpg",
+          "category": "Starters",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "27",
+      "name": "Varq",
+      "cuisine": "Modern Indian",
+      "rating": 4.9,
+      "deliveryTime": "40-50 min",
+      "location": "Taj Mahal Hotel",
+      "minOrder": 1200,
+      "deliveryFee": 100,
+      "isOpen": true,
+      "website": "https://www.tajhotels.com/",
+      "menu": [
+        {
+          "id": "53",
+          "name": "Tandoori Lobster",
+          "description": "Grilled lobster with Indian spices",
+          "price": 2500,
+          "image": "/images/tandoori-lobster.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        },
+        {
+          "id": "54",
+          "name": "Paneer Tikka",
+          "description": "Grilled cottage cheese with spices",
+          "price": 650,
+          "image": "/images/paneer-tikka.jpg",
+          "category": "Starters",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "28",
+      "name": "Chor Bizarre",
+      "cuisine": "Kashmiri",
+      "rating": 4.6,
+      "deliveryTime": "35-45 min",
+      "location": "Hotel Broadway",
+      "minOrder": 500,
+      "deliveryFee": 60,
+      "isOpen": true,
+      "website": "https://www.hotelbroadway.com/",
+      "menu": [
+        {
+          "id": "55",
+          "name": "Rogan Josh",
+          "description": "Kashmiri lamb curry",
+          "price": 550,
+          "image": "/images/rogan-josh.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        },
+        {
+          "id": "56",
+          "name": "Gushtaba",
+          "description": "Meatballs in yogurt gravy",
+          "price": 600,
+          "image": "/images/gushtaba.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "29",
+      "name": "Peshawri",
+      "cuisine": "North West Frontier",
+      "rating": 4.8,
+      "deliveryTime": "35-45 min",
+      "location": "ITC Maurya",
+      "minOrder": 900,
+      "deliveryFee": 90,
+      "isOpen": true,
+      "website": "https://www.itchotels.com/",
+      "menu": [
+        {
+          "id": "57",
+          "name": "Murgh Malai Kebab",
+          "description": "Creamy chicken kebab",
+          "price": 750,
+          "image": "/images/murgh-malai-kebab.jpg",
+          "category": "Starters",
+          "isVeg": false
+        },
+        {
+          "id": "58",
+          "name": "Dal Bukhara",
+          "description": "Signature black lentils",
+          "price": 550,
+          "image": "/images/dal-bukhara.jpg",
+          "category": "Main Course",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "30",
+      "name": "Masala Library",
+      "cuisine": "Modern Indian",
+      "rating": 4.7,
+      "deliveryTime": "40-50 min",
+      "location": "Janpath",
+      "minOrder": 1000,
+      "deliveryFee": 100,
+      "isOpen": true,
+      "website": "https://www.masalalibrary.com/",
+      "menu": [
+        {
+          "id": "59",
+          "name": "Molecular Chaat",
+          "description": "Modern take on street food",
+          "price": 450,
+          "image": "/images/molecular-chaat.jpg",
+          "category": "Starters",
+          "isVeg": true
+        },
+        {
+          "id": "60",
+          "name": "Lamb Shank Rogan Josh",
+          "description": "Slow-cooked lamb in Kashmiri spices",
+          "price": 1200,
+          "image": "/images/lamb-shank.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "31",
+      "name": "Gulati",
+      "cuisine": "North Indian",
+      "rating": 4.7,
+      "deliveryTime": "30-40 min",
+      "location": "Pandara Road",
+      "minOrder": 500,
+      "deliveryFee": 50,
+      "isOpen": true,
+      "website": "https://www.gulatirestaurant.com/",
+      "menu": [
+        {
+          "id": "61",
+          "name": "Butter Chicken",
+          "description": "Signature dish with rich tomato gravy",
+          "price": 550,
+          "image": "/images/gulati-butter-chicken.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        },
+        {
+          "id": "62",
+          "name": "Dal Makhani",
+          "description": "Creamy black lentils cooked overnight",
+          "price": 450,
+          "image": "/images/gulati-dal-makhani.jpg",
+          "category": "Main Course",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "32",
+      "name": "Khan Chacha",
+      "cuisine": "Mughlai",
+      "rating": 4.6,
+      "deliveryTime": "25-35 min",
+      "location": "Khan Market",
+      "minOrder": 300,
+      "deliveryFee": 40,
+      "isOpen": true,
+      "website": "https://www.khanchacha.com/",
+      "menu": [
+        {
+          "id": "63",
+          "name": "Chicken Tikka Roll",
+          "description": "Grilled chicken tikka wrapped in roomali roti",
+          "price": 250,
+          "image": "/images/chicken-tikka-roll.jpg",
+          "category": "Rolls",
+          "isVeg": false
+        },
+        {
+          "id": "64",
+          "name": "Paneer Tikka Roll",
+          "description": "Grilled paneer tikka wrapped in roomali roti",
+          "price": 220,
+          "image": "/images/paneer-tikka-roll.jpg",
+          "category": "Rolls",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "33",
+      "name": "Sagar Ratna",
+      "cuisine": "South Indian",
+      "rating": 4.5,
+      "deliveryTime": "20-30 min",
+      "location": "Multiple Locations",
+      "minOrder": 200,
+      "deliveryFee": 30,
+      "isOpen": true,
+      "website": "https://www.sagarratna.com/",
+      "menu": [
+        {
+          "id": "65",
+          "name": "Masala Dosa",
+          "description": "Crispy rice crepe with spiced potato filling",
+          "price": 180,
+          "image": "/images/masala-dosa.jpg",
+          "category": "Breakfast",
+          "isVeg": true
+        },
+        {
+          "id": "66",
+          "name": "Idli Sambar",
+          "description": "Steamed rice cakes with lentil soup",
+          "price": 120,
+          "image": "/images/idli-sambar.jpg",
+          "category": "Breakfast",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "34",
+      "name": "Haldiram's",
+      "cuisine": "North Indian",
+      "rating": 4.6,
+      "deliveryTime": "20-30 min",
+      "location": "Multiple Locations",
+      "minOrder": 150,
+      "deliveryFee": 25,
+      "isOpen": true,
+      "website": "https://www.haldiram.com/",
+      "menu": [
+        {
+          "id": "67",
+          "name": "Chole Bhature",
+          "description": "Spicy chickpeas with deep-fried bread",
+          "price": 180,
+          "image": "/images/chole-bhature.jpg",
+          "category": "Main Course",
+          "isVeg": true
+        },
+        {
+          "id": "68",
+          "name": "Raj Kachori",
+          "description": "Crispy shell filled with yogurt and chutneys",
+          "price": 150,
+          "image": "/images/raj-kachori.jpg",
+          "category": "Snacks",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "35",
+      "name": "Wenger's",
+      "cuisine": "Bakery",
+      "rating": 4.4,
+      "deliveryTime": "15-25 min",
+      "location": "Connaught Place",
+      "minOrder": 100,
+      "deliveryFee": 20,
+      "isOpen": true,
+      "website": "https://www.wengersdelhi.com/",
+      "menu": [
+        {
+          "id": "69",
+          "name": "Chocolate Pastry",
+          "description": "Rich chocolate cake with cream",
+          "price": 80,
+          "image": "/images/chocolate-pastry.jpg",
+          "category": "Dessert",
+          "isVeg": true
+        },
+        {
+          "id": "70",
+          "name": "Chicken Puff",
+          "description": "Flaky pastry with spiced chicken filling",
+          "price": 60,
+          "image": "/images/chicken-puff.jpg",
+          "category": "Snacks",
+          "isVeg": false
+        }
+      ]
+    },
+    {
+      "id": "36",
+      "name": "Kake Da Hotel",
+      "cuisine": "North Indian",
+      "rating": 4.8,
+      "deliveryTime": "30-40 min",
+      "location": "Connaught Place",
+      "minOrder": 400,
+      "deliveryFee": 45,
+      "isOpen": true,
+      "website": "https://www.kakedahotel.com/",
+      "menu": [
+        {
+          "id": "71",
+          "name": "Mutton Curry",
+          "description": "Spicy mutton curry with rich gravy",
+          "price": 550,
+          "image": "/images/mutton-curry.jpg",
+          "category": "Main Course",
+          "isVeg": false
+        },
+        {
+          "id": "72",
+          "name": "Dal Tadka",
+          "description": "Yellow lentils tempered with spices",
+          "price": 250,
+          "image": "/images/dal-tadka.jpg",
+          "category": "Main Course",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "37",
+      "name": "Saravana Bhavan",
+      "cuisine": "South Indian",
+      "rating": 4.7,
+      "deliveryTime": "25-35 min",
+      "location": "Multiple Locations",
+      "minOrder": 200,
+      "deliveryFee": 30,
+      "isOpen": true,
+      "website": "https://www.saravanabhavan.com/",
+      "menu": [
+        {
+          "id": "73",
+          "name": "Rava Dosa",
+          "description": "Crispy semolina crepe with potato filling",
+          "price": 200,
+          "image": "/images/rava-dosa.jpg",
+          "category": "Breakfast",
+          "isVeg": true
+        },
+        {
+          "id": "74",
+          "name": "Filter Coffee",
+          "description": "Traditional South Indian filter coffee",
+          "price": 50,
+          "image": "/images/filter-coffee.jpg",
+          "category": "Beverages",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "38",
+      "name": "Kuremal Mohanlal Kulfi Wale",
+      "cuisine": "Desserts",
+      "rating": 4.9,
+      "deliveryTime": "20-30 min",
+      "location": "Chandni Chowk",
+      "minOrder": 100,
+      "deliveryFee": 20,
+      "isOpen": true,
+      "website": "https://www.kuremalkulfi.com/",
+      "menu": [
+        {
+          "id": "75",
+          "name": "Mango Kulfi",
+          "description": "Traditional Indian ice cream with mango",
+          "price": 120,
+          "image": "/images/mango-kulfi.jpg",
+          "category": "Dessert",
+          "isVeg": true
+        },
+        {
+          "id": "76",
+          "name": "Paan Kulfi",
+          "description": "Betel leaf flavored kulfi",
+          "price": 100,
+          "image": "/images/paan-kulfi.jpg",
+          "category": "Dessert",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "39",
+      "name": "Paranthe Wali Gali",
+      "cuisine": "North Indian",
+      "rating": 4.5,
+      "deliveryTime": "25-35 min",
+      "location": "Chandni Chowk",
+      "minOrder": 150,
+      "deliveryFee": 25,
+      "isOpen": true,
+      "website": "https://www.paranthewali.com/",
+      "menu": [
+        {
+          "id": "77",
+          "name": "Aloo Parantha",
+          "description": "Stuffed flatbread with spiced potatoes",
+          "price": 80,
+          "image": "/images/aloo-parantha.jpg",
+          "category": "Main Course",
+          "isVeg": true
+        },
+        {
+          "id": "78",
+          "name": "Paneer Parantha",
+          "description": "Stuffed flatbread with cottage cheese",
+          "price": 100,
+          "image": "/images/paneer-parantha.jpg",
+          "category": "Main Course",
+          "isVeg": true
+        }
+      ]
+    },
+    {
+      "id": "40",
+      "name": "Jalebi Wala",
+      "cuisine": "Sweets",
+      "rating": 4.8,
+      "deliveryTime": "15-25 min",
+      "location": "Chandni Chowk",
+      "minOrder": 100,
+      "deliveryFee": 20,
+      "isOpen": true,
+      "website": "https://www.jalebiwala.com/",
+      "menu": [
+        {
+          "id": "79",
+          "name": "Jalebi",
+          "description": "Crispy sweet pretzel in sugar syrup",
+          "price": 50,
+          "image": "/images/jalebi.jpg",
+          "category": "Dessert",
+          "isVeg": true
+        },
+        {
+          "id": "80",
+          "name": "Samosa",
+          "description": "Spiced potato filled pastry",
+          "price": 40,
+          "image": "/images/samosa.jpg",
+          "category": "Snacks",
+          "isVeg": true
+        }
+      ]
+    }
+  ]
+} 

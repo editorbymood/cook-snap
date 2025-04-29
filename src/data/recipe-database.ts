@@ -1,4 +1,3 @@
-
 import { Recipe } from "@/types";
 
 // Mock recipe database with extensive coverage of global cuisines
@@ -843,26 +842,35 @@ export const recipeDatabase: Record<string, Recipe> = {
   "Avocado Toast": {
     id: "avocado-toast",
     name: "Avocado Toast",
-    description: "Smashed avocado on toasted bread with various toppings.",
-    image: "https://images.unsplash.com/photo-1603046891744-76f2e8b39203?q=80&w=2574&auto=format&fit=crop",
+    description: "Creamy avocado on whole grain toast with a sprinkle of chili flakes and lemon juice.",
+    image: "https://images.unsplash.com/photo-1588137378633-dea1336ce1c2?q=80&w=2574&auto=format&fit=crop",
     ingredients: [
       "Whole grain bread",
-      "Avocado",
+      "Ripe avocado",
       "Lemon juice",
-      "Red pepper flakes",
-      "Microgreens",
-      "Salt"
+      "Red chili flakes",
+      "Sea salt",
+      "Extra virgin olive oil"
     ],
     instructions: [
-      "Toast bread",
-      "Mash avocado with lemon and salt",
-      "Spread on toast",
-      "Add toppings"
+      "Toast the bread until golden",
+      "Mash the avocado with lemon juice and salt",
+      "Spread the avocado mixture on toast",
+      "Drizzle with olive oil and sprinkle chili flakes"
     ],
-    prepTime: "10",
+    prepTime: "5",
     cookTime: "5",
     servings: 2,
-    tags: ["Vegetarian", "Breakfast", "Quick", "American", "Vegan"]
+    tags: ["Breakfast", "Healthy", "Quick", "Vegetarian", "Vegan"],
+    nutritionalInfo: {
+      calories: 220,
+      protein: 4,
+      carbs: 22,
+      fat: 15,
+      fiber: 8,
+      sugar: 1,
+      sodium: 200
+    }
   },
   "Sweet Potato Black Bean Burger": {
     id: "sweet-potato-black-bean-burger",
@@ -1184,6 +1192,181 @@ export const recipeDatabase: Record<string, Recipe> = {
     cookTime: "0",
     servings: 1,
     tags: ["Breakfast", "Healthy", "No-Cook", "Vegetarian", "Vegan"]
+  },
+  "Quinoa Breakfast Bowl": {
+    id: "quinoa-breakfast-bowl",
+    name: "Quinoa Breakfast Bowl",
+    description: "Protein-rich quinoa bowl with fresh fruits, nuts, and honey.",
+    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2574&auto=format&fit=crop",
+    ingredients: [
+      "Quinoa",
+      "Almond milk",
+      "Mixed berries",
+      "Banana",
+      "Almonds",
+      "Honey",
+      "Chia seeds"
+    ],
+    instructions: [
+      "Cook quinoa in almond milk",
+      "Top with fresh fruits and nuts",
+      "Drizzle with honey",
+      "Sprinkle chia seeds"
+    ],
+    prepTime: "10",
+    cookTime: "15",
+    servings: 2,
+    tags: ["Breakfast", "Healthy", "Vegetarian", "Gluten-Free"],
+    nutritionalInfo: {
+      calories: 350,
+      protein: 12,
+      carbs: 45,
+      fat: 14,
+      fiber: 10,
+      sugar: 18,
+      sodium: 50
+    }
+  },
+  "Mediterranean Buddha Bowl": {
+    id: "mediterranean-buddha-bowl",
+    name: "Mediterranean Buddha Bowl",
+    description: "Colorful bowl with quinoa, roasted vegetables, hummus, and tahini dressing.",
+    image: "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?q=80&w=2574&auto=format&fit=crop",
+    ingredients: [
+      "Quinoa",
+      "Chickpeas",
+      "Cucumber",
+      "Tomatoes",
+      "Red onion",
+      "Kalamata olives",
+      "Hummus",
+      "Tahini",
+      "Lemon juice"
+    ],
+    instructions: [
+      "Cook quinoa according to package",
+      "Chop vegetables",
+      "Prepare tahini dressing",
+      "Assemble bowl with all ingredients"
+    ],
+    prepTime: "15",
+    cookTime: "20",
+    servings: 2,
+    tags: ["Lunch", "Healthy", "Vegetarian", "Vegan", "Mediterranean"],
+    nutritionalInfo: {
+      calories: 450,
+      protein: 18,
+      carbs: 55,
+      fat: 20,
+      fiber: 12,
+      sugar: 6,
+      sodium: 400
+    }
+  },
+  "Grilled Salmon Bowl": {
+    id: "grilled-salmon-bowl",
+    name: "Grilled Salmon Bowl",
+    description: "Grilled salmon with brown rice, steamed vegetables, and teriyaki sauce.",
+    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=2574&auto=format&fit=crop",
+    ingredients: [
+      "Salmon fillet",
+      "Brown rice",
+      "Broccoli",
+      "Carrots",
+      "Edamame",
+      "Teriyaki sauce",
+      "Sesame seeds"
+    ],
+    instructions: [
+      "Cook brown rice",
+      "Grill salmon with teriyaki sauce",
+      "Steam vegetables",
+      "Assemble bowl and garnish with sesame seeds"
+    ],
+    prepTime: "15",
+    cookTime: "20",
+    servings: 2,
+    tags: ["Lunch", "Healthy", "Pescatarian", "High-Protein"],
+    nutritionalInfo: {
+      calories: 550,
+      protein: 35,
+      carbs: 45,
+      fat: 25,
+      fiber: 8,
+      sugar: 5,
+      sodium: 600
+    }
+  },
+  "Vegetable Stir-Fry": {
+    id: "vegetable-stir-fry",
+    name: "Vegetable Stir-Fry",
+    description: "Quick and healthy stir-fry with mixed vegetables and tofu in a light sauce.",
+    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=2574&auto=format&fit=crop",
+    ingredients: [
+      "Tofu",
+      "Broccoli",
+      "Bell peppers",
+      "Carrots",
+      "Snow peas",
+      "Ginger",
+      "Garlic",
+      "Soy sauce",
+      "Sesame oil"
+    ],
+    instructions: [
+      "Press and cube tofu",
+      "Chop vegetables",
+      "Stir-fry tofu and vegetables",
+      "Add sauce and serve"
+    ],
+    prepTime: "15",
+    cookTime: "15",
+    servings: 4,
+    tags: ["Dinner", "Healthy", "Vegetarian", "Vegan", "Quick"],
+    nutritionalInfo: {
+      calories: 280,
+      protein: 15,
+      carbs: 25,
+      fat: 12,
+      fiber: 8,
+      sugar: 6,
+      sodium: 800
+    }
+  },
+  "Chicken and Vegetable Skewers": {
+    id: "chicken-vegetable-skewers",
+    name: "Chicken and Vegetable Skewers",
+    description: "Grilled chicken and vegetable skewers with a lemon-herb marinade.",
+    image: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?q=80&w=2574&auto=format&fit=crop",
+    ingredients: [
+      "Chicken breast",
+      "Zucchini",
+      "Bell peppers",
+      "Red onion",
+      "Cherry tomatoes",
+      "Lemon juice",
+      "Olive oil",
+      "Herbs"
+    ],
+    instructions: [
+      "Cut chicken and vegetables into chunks",
+      "Prepare marinade",
+      "Thread ingredients onto skewers",
+      "Grill until chicken is cooked through"
+    ],
+    prepTime: "20",
+    cookTime: "15",
+    servings: 4,
+    tags: ["Dinner", "Healthy", "High-Protein", "Grilled"],
+    nutritionalInfo: {
+      calories: 320,
+      protein: 30,
+      carbs: 15,
+      fat: 16,
+      fiber: 4,
+      sugar: 8,
+      sodium: 400
+    }
   }
 };
 

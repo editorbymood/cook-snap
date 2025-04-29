@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -30,7 +29,7 @@ const AuthPage = () => {
     return null;
   }
   
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoggingIn(true);
     
@@ -38,15 +37,15 @@ const AuthPage = () => {
       await login(loginEmail, loginPassword);
       toast.success("Successfully logged in!");
       navigate("/");
-    } catch (error) {
+    } catch (error: unknown) {
       toast.error("Failed to log in. Please check your credentials.");
-      console.error("Login error:", error);
+      console.error("Login error:", error instanceof Error ? error.message : String(error));
     } finally {
       setIsLoggingIn(false);
     }
   };
   
-  const handleRegister = async (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsRegistering(true);
     
@@ -54,9 +53,9 @@ const AuthPage = () => {
       await register(registerName, registerEmail, registerPassword);
       toast.success("Account created successfully!");
       navigate("/");
-    } catch (error) {
+    } catch (error: unknown) {
       toast.error("Failed to create account. Please try again.");
-      console.error("Registration error:", error);
+      console.error("Registration error:", error instanceof Error ? error.message : String(error));
     } finally {
       setIsRegistering(false);
     }

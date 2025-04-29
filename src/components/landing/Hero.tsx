@@ -1,117 +1,42 @@
-
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { ChevronRight, Star } from "lucide-react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
+import React from 'react';
+import FloatingFoodElements from '../common/FloatingFoodElements';
 
 const Hero = () => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLogin, setIsLogin] = useState(true);
-
-  const handleAuth = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast.success(isLogin ? "Logged in successfully!" : "Account created successfully!");
-    navigate("/");
-  };
-
   return (
-    <section className="relative bg-gradient-to-r from-primary/10 to-secondary/20 py-20">
-      <div className="container px-4 mx-auto max-w-6xl">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
-              Discover Recipes with a Simple <span className="text-primary">Photo</span>
-            </h1>
-            <p className="text-lg text-muted-foreground mb-8 animate-fade-in">
-              Take a photo of any food and instantly get matching recipes with detailed instructions and nutrition information.
-            </p>
-            <div className="space-x-4 animate-fade-in">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button size="lg" className="hover:scale-105 transition-transform duration-300">
-                    Get Started <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
-                  <DialogHeader>
-                    <DialogTitle>{isLogin ? "Login to CookSnap" : "Create an Account"}</DialogTitle>
-                    <DialogDescription>
-                      {isLogin ? "Welcome back! Please enter your credentials." : "Join CookSnap and start discovering recipes."}
-                    </DialogDescription>
-                  </DialogHeader>
-                  <form onSubmit={handleAuth} className="space-y-4 py-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        type="email" 
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="your@email.com"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="password">Password</Label>
-                      <Input
-                        id="password"
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                      />
-                    </div>
-                    <Button type="submit" className="w-full">
-                      {isLogin ? "Login" : "Sign Up"}
-                    </Button>
-                    <p className="text-center text-sm">
-                      {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
-                      <button
-                        type="button"
-                        className="text-primary hover:underline"
-                        onClick={() => setIsLogin(!isLogin)}
-                      >
-                        {isLogin ? "Sign Up" : "Login"}
-                      </button>
-                    </p>
-                  </form>
-                </DialogContent>
-              </Dialog>
-              
-              <Button variant="outline" size="lg" onClick={() => navigate("/recipes")} className="hover:bg-background/90 transition-colors duration-300">
-                Explore Recipes
-              </Button>
-            </div>
+    <div className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <FloatingFoodElements
+        count={40}
+        speed={1.5}
+        sizeRange={[20, 40]}
+        opacityRange={[0.3, 0.5]}
+      />
+      <div className="relative z-10 text-center px-4">
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500">
+          Ready to Transform Your Cooking
+        </h1>
+        <p className="text-xl md:text-2xl mb-8 text-gray-700 dark:text-gray-300">
+          Discover the joy of cooking with our innovative platform
+        </p>
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div className="bg-white/80 dark:bg-gray-800/80 p-4 rounded-lg shadow-lg">
+            <div className="text-3xl font-bold text-orange-500">150+</div>
+            <div className="text-gray-600 dark:text-gray-400">Recipes</div>
           </div>
-          <div className="md:w-1/2 relative">
-            <div className="rounded-2xl overflow-hidden shadow-2xl transform transition-transform hover:scale-[1.02] duration-500">
-              <img 
-                src="https://images.unsplash.com/photo-1505935428862-770b6f24f629?q=80&w=2547&auto=format&fit=crop" 
-                alt="Food recognition" 
-                className="w-full h-auto object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-5 -left-5 bg-background rounded-lg p-4 shadow-lg transform transition-transform hover:scale-105 duration-300">
-              <div className="flex items-center space-x-2">
-                <div className="bg-primary/20 p-2 rounded-full">
-                  <Star className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-medium">AI-Powered</p>
-                  <p className="text-sm text-muted-foreground">Photo Recognition</p>
-                </div>
-              </div>
-            </div>
+          <div className="bg-white/80 dark:bg-gray-800/80 p-4 rounded-lg shadow-lg">
+            <div className="text-3xl font-bold text-amber-500">50+</div>
+            <div className="text-gray-600 dark:text-gray-400">Cuisines</div>
+          </div>
+          <div className="bg-white/80 dark:bg-gray-800/80 p-4 rounded-lg shadow-lg">
+            <div className="text-3xl font-bold text-yellow-500">4.5+</div>
+            <div className="text-gray-600 dark:text-gray-400">Average Rating</div>
+          </div>
+          <div className="bg-white/80 dark:bg-gray-800/80 p-4 rounded-lg shadow-lg">
+            <div className="text-3xl font-bold text-orange-400">30min</div>
+            <div className="text-gray-600 dark:text-gray-400">Prep Time</div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

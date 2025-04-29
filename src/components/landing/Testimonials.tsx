@@ -1,53 +1,72 @@
-
-import { Star } from "lucide-react";
+import React from 'react';
+import { Star } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "CookSnap revolutionized my cooking experience! I just snap a photo and get the perfect recipe every time.",
-    author: "Diya Gupta",
+    name: "Rahul Sharma",
     role: "Food Enthusiast",
-    rating: 5
+    image: "https://randomuser.me/api/portraits/men/1.jpg",
+    rating: 5,
+    review: "The best food delivery platform in Delhi! I love how easy it is to discover new restaurants and cuisines."
   },
   {
-    quote: "The recipe recognition is incredibly accurate. It's like having a personal chef in my pocket.",
-    author: "Janvi Gaba",
-    role: "Home Cook",
-    rating: 4
+    name: "Priya Patel",
+    role: "Working Professional",
+    image: "https://randomuser.me/api/portraits/women/2.jpg",
+    rating: 5,
+    review: "Quick delivery and amazing food quality. The variety of restaurants available is impressive!"
   },
   {
-    quote: "I've discovered so many new recipes I would have never tried. The nutritional info helps me stay on track with my goals.",
-    author: "Samridhi Sharma",
-    role: "Fitness Coach",
-    rating: 4
+    name: "Amit Kumar",
+    role: "Student",
+    image: "https://randomuser.me/api/portraits/men/3.jpg",
+    rating: 4,
+    review: "Great platform with reliable delivery. The ratings and reviews help me make better choices."
+  },
+  {
+    name: "Neha Gupta",
+    role: "Food Blogger",
+    image: "https://randomuser.me/api/portraits/women/4.jpg",
+    rating: 5,
+    review: "As a food blogger, I appreciate the diverse range of cuisines available. The search functionality is excellent!"
   }
 ];
 
 const Testimonials = () => {
   return (
-    <section className="py-16 bg-primary/5">
+    <section className="py-20 bg-muted">
       <div className="container px-4 mx-auto max-w-6xl">
-        <h2 className="text-3xl font-bold mb-10 text-center">What Our Users Say</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            What Our Customers Say
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            Hear from our satisfied customers about their experiences
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-background rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg">
-              <div className="flex items-center gap-1 mb-6">
-                {Array(5).fill(0).map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`h-5 w-5 ${i < testimonial.rating ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200'}`}
-                  />
-                ))}
-              </div>
-              <p className="mb-6 text-muted-foreground italic">"{testimonial.quote}"</p>
-              <div className="flex items-center gap-3">
-                <div className="bg-primary/20 h-10 w-10 rounded-full flex items-center justify-center">
-                  <span className="font-medium text-primary">{testimonial.author.charAt(0)}</span>
-                </div>
+            <div
+              key={index}
+              className="p-6 rounded-lg border bg-card hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="flex items-center mb-4">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-12 h-12 rounded-full mr-4"
+                />
                 <div>
-                  <p className="font-semibold">{testimonial.author}</p>
+                  <h3 className="font-semibold">{testimonial.name}</h3>
                   <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                 </div>
               </div>
+              <div className="flex mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-muted-foreground">{testimonial.review}</p>
             </div>
           ))}
         </div>

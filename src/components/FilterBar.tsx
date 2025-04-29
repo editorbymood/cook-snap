@@ -1,211 +1,273 @@
-
-import React, { useState, useEffect } from "react";
-import { Filter, X, ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { getAllCuisines, getAllMealTypes, getAllDietaryPreferences, getRegionalCategories } from "@/lib/recipe-service";
+import React from 'react';
+import { SearchFilters, SortOption } from '@/types';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+import { Slider } from '@/components/ui/slider';
+import { SlidersHorizontal } from 'lucide-react';
+import { getAllCuisines, getAllMealTypes, getAllDietaryPreferences } from '@/lib/recipe-service';
 
-interface FilterBarProps {
-  tags: string[];
-  selectedTags: string[];
-  onFilterChange: (tags: string[]) => void;
+export interface FilterBarProps {
+  filters: SearchFilters;
+  onFiltersChange: (filters: SearchFilters) => void;
+  sortOption: SortOption;
+  onSortChange: (sortOption: SortOption) => void;
 }
 
-const FilterBar: React.FC<FilterBarProps> = ({ tags, selectedTags, onFilterChange }) => {
-  const [localSelectedTags, setLocalSelectedTags] = useState<string[]>(selectedTags);
-  const [cuisines, setCuisines] = useState<string[]>([]);
-  const [mealTypes, setMealTypes] = useState<string[]>([]);
-  const [dietaryPreferences, setDietaryPreferences] = useState<string[]>([]);
-  const [regions, setRegions] = useState<Record<string, string[]>>({});
-  const [selectedRegion, setSelectedRegion] = useState<string>("");
-  
-  // Load all filter categories on mount
-  useEffect(() => {
-    setCuisines(getAllCuisines());
-    setMealTypes(getAllMealTypes());
-    setDietaryPreferences(getAllDietaryPreferences());
-    setRegions(getRegionalCategories());
-  }, []);
+const FilterBar: React.FC<FilterBarProps> = ({
+  filters,
+  onFiltersChange,
+  sortOption,
+  onSortChange,
+}) => {
+  const cuisines = getAllCuisines();
+  const mealTypes = getAllMealTypes();
+  const dietaryPreferences = getAllDietaryPreferences();
 
-  const handleTagToggle = (tag: string) => {
-    setLocalSelectedTags(prev => {
-      if (prev.includes(tag)) {
-        return prev.filter(t => t !== tag);
-      } else {
-        return [...prev, tag];
-      }
+  const handleCuisineChange = (cuisine: string) => {
+    const newCuisines = filters.cuisine?.includes(cuisine)
+      ? filters.cuisine.filter(c => c !== cuisine)
+      : [...(filters.cuisine || []), cuisine];
+    
+    onFiltersChange({
+      ...filters,
+      cuisine: newCuisines.length > 0 ? newCuisines : undefined,
     });
   };
 
-  const applyFilters = () => {
-    onFilterChange(localSelectedTags);
+  const handleMealTypeChange = (mealType: string) => {
+    const newMealTypes = filters.mealType?.includes(mealType)
+      ? filters.mealType.filter(t => t !== mealType)
+      : [...(filters.mealType || []), mealType];
+    
+    onFiltersChange({
+      ...filters,
+      mealType: newMealTypes.length > 0 ? newMealTypes : undefined,
+    });
   };
 
-  const clearFilters = () => {
-    setLocalSelectedTags([]);
-    onFilterChange([]);
+  const handleDietaryPreferenceChange = (preference: string) => {
+    const newPreferences = filters.dietaryPreferences?.includes(preference)
+      ? filters.dietaryPreferences.filter(p => p !== preference)
+      : [...(filters.dietaryPreferences || []), preference];
+    
+    onFiltersChange({
+      ...filters,
+      dietaryPreferences: newPreferences.length > 0 ? newPreferences : undefined,
+    });
   };
 
-  const handleRegionChange = (value: string) => {
-    setSelectedRegion(value);
+  const handleDifficultyChange = (difficulty: string) => {
+    const newDifficulties = filters.difficulty?.includes(difficulty as any)
+      ? filters.difficulty.filter(d => d !== difficulty)
+      : [...(filters.difficulty || []), difficulty as any];
+    
+    onFiltersChange({
+      ...filters,
+      difficulty: newDifficulties.length > 0 ? newDifficulties : undefined,
+    });
   };
 
-  const getRegionalCuisines = () => {
-    return selectedRegion ? regions[selectedRegion] || [] : [];
+  const handleCookingTimeChange = (value: number[]) => {
+    onFiltersChange({
+      ...filters,
+      cookingTime: {
+        min: value[0],
+        max: value[1],
+      },
+    });
+  };
+
+  const handleServingsChange = (value: number[]) => {
+    onFiltersChange({
+      ...filters,
+      servings: {
+        min: value[0],
+        max: value[1],
+      },
+    });
+  };
+
+  const handleSortChange = (value: string) => {
+    const [field, direction] = value.split('-');
+    onSortChange({
+      field: field as SortOption['field'],
+      direction: direction as 'asc' | 'desc',
+    });
+  };
+
+  const getActiveFiltersCount = () => {
+    let count = 0;
+    if (filters.cuisine?.length) count += filters.cuisine.length;
+    if (filters.mealType?.length) count += filters.mealType.length;
+    if (filters.dietaryPreferences?.length) count += filters.dietaryPreferences.length;
+    if (filters.difficulty?.length) count += filters.difficulty.length;
+    if (filters.cookingTime) count++;
+    if (filters.servings) count++;
+    return count;
   };
 
   return (
-    <div className="flex items-center flex-wrap gap-2 py-2">
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button variant="outline" className="flex items-center gap-2">
-            <Filter className="h-4 w-4" />
-            <span>Filter</span>
-            {selectedTags.length > 0 && (
-              <Badge variant="secondary">{selectedTags.length}</Badge>
+    <div className="flex items-center gap-4 mb-6">
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" className="gap-2">
+            <SlidersHorizontal className="h-4 w-4" />
+            Filters
+            {getActiveFiltersCount() > 0 && (
+              <Badge variant="secondary" className="ml-1">
+                {getActiveFiltersCount()}
+              </Badge>
             )}
           </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-96 p-4" align="start">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h3 className="font-medium">Filters</h3>
-              {localSelectedTags.length > 0 && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-8 px-2 text-xs"
-                  onClick={clearFilters}
-                >
-                  Clear all
-                </Button>
-              )}
+        </SheetTrigger>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>Filters</SheetTitle>
+            <SheetDescription>
+              Refine your recipe search with filters
+            </SheetDescription>
+          </SheetHeader>
+
+          <div className="py-6 space-y-6">
+            <div>
+              <h3 className="font-medium mb-3">Cuisine</h3>
+              <div className="flex flex-wrap gap-2">
+                {cuisines.map(cuisine => (
+                  <Badge
+                    key={cuisine}
+                    variant={filters.cuisine?.includes(cuisine) ? "default" : "outline"}
+                    className="cursor-pointer"
+                    onClick={() => handleCuisineChange(cuisine)}
+                  >
+                    {cuisine}
+                  </Badge>
+                ))}
+              </div>
             </div>
-            
-            <Tabs defaultValue="cuisine" className="w-full">
-              <TabsList className="w-full grid grid-cols-3">
-                <TabsTrigger value="cuisine">Cuisine</TabsTrigger>
-                <TabsTrigger value="meal">Meal Type</TabsTrigger>
-                <TabsTrigger value="dietary">Dietary</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="cuisine" className="pt-2">
-                <div className="mb-4">
-                  <Select value={selectedRegion} onValueChange={handleRegionChange}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Filter by region" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="">All Regions</SelectItem>
-                      {Object.keys(regions).map(region => (
-                        <SelectItem key={region} value={region}>{region}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div className="space-y-2 max-h-60 overflow-y-auto pr-2">
-                  {(selectedRegion ? getRegionalCuisines() : cuisines).map(cuisine => (
-                    <div key={cuisine} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={`cuisine-${cuisine}`}
-                        checked={localSelectedTags.includes(cuisine)}
-                        onCheckedChange={() => handleTagToggle(cuisine)}
-                      />
-                      <Label htmlFor={`cuisine-${cuisine}`} className="cursor-pointer">
-                        {cuisine}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-              </TabsContent>
-              
-              <TabsContent value="meal" className="pt-2">
-                <div className="space-y-2 max-h-60 overflow-y-auto pr-2">
-                  {mealTypes.map(mealType => (
-                    <div key={mealType} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={`meal-${mealType}`}
-                        checked={localSelectedTags.includes(mealType)}
-                        onCheckedChange={() => handleTagToggle(mealType)}
-                      />
-                      <Label htmlFor={`meal-${mealType}`} className="cursor-pointer">
-                        {mealType}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-              </TabsContent>
-              
-              <TabsContent value="dietary" className="pt-2">
-                <div className="space-y-2 max-h-60 overflow-y-auto pr-2">
-                  {dietaryPreferences.map(diet => (
-                    <div key={diet} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={`diet-${diet}`}
-                        checked={localSelectedTags.includes(diet)}
-                        onCheckedChange={() => handleTagToggle(diet)}
-                      />
-                      <Label htmlFor={`diet-${diet}`} className="cursor-pointer">
-                        {diet}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-              </TabsContent>
-            </Tabs>
-            
-            <div className="flex justify-end gap-2 pt-2 border-t">
-              <Button variant="outline" onClick={() => setLocalSelectedTags(selectedTags)}>
-                Reset
-              </Button>
-              <Button onClick={applyFilters}>Apply Filters</Button>
+
+            <div>
+              <h3 className="font-medium mb-3">Meal Type</h3>
+              <div className="flex flex-wrap gap-2">
+                {mealTypes.map(type => (
+                  <Badge
+                    key={type}
+                    variant={filters.mealType?.includes(type) ? "default" : "outline"}
+                    className="cursor-pointer"
+                    onClick={() => handleMealTypeChange(type)}
+                  >
+                    {type}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-medium mb-3">Dietary Preferences</h3>
+              <div className="flex flex-wrap gap-2">
+                {dietaryPreferences.map(preference => (
+                  <Badge
+                    key={preference}
+                    variant={filters.dietaryPreferences?.includes(preference) ? "default" : "outline"}
+                    className="cursor-pointer"
+                    onClick={() => handleDietaryPreferenceChange(preference)}
+                  >
+                    {preference}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-medium mb-3">Difficulty</h3>
+              <div className="flex flex-wrap gap-2">
+                {['easy', 'medium', 'hard'].map(difficulty => (
+                  <Badge
+                    key={difficulty}
+                    variant={filters.difficulty?.includes(difficulty as any) ? "default" : "outline"}
+                    className="cursor-pointer"
+                    onClick={() => handleDifficultyChange(difficulty)}
+                  >
+                    {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-medium mb-3">Total Cooking Time (minutes)</h3>
+              <Slider
+                min={0}
+                max={180}
+                step={15}
+                value={[
+                  filters.cookingTime?.min || 0,
+                  filters.cookingTime?.max || 180,
+                ]}
+                onValueChange={handleCookingTimeChange}
+              />
+              <div className="flex justify-between mt-2 text-sm text-muted-foreground">
+                <span>{filters.cookingTime?.min || 0} mins</span>
+                <span>{filters.cookingTime?.max || 180} mins</span>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-medium mb-3">Servings</h3>
+              <Slider
+                min={1}
+                max={12}
+                step={1}
+                value={[
+                  filters.servings?.min || 1,
+                  filters.servings?.max || 12,
+                ]}
+                onValueChange={handleServingsChange}
+              />
+              <div className="flex justify-between mt-2 text-sm text-muted-foreground">
+                <span>{filters.servings?.min || 1} servings</span>
+                <span>{filters.servings?.max || 12} servings</span>
+              </div>
             </div>
           </div>
-        </PopoverContent>
-      </Popover>
-      
-      {selectedTags.length > 0 && (
-        <div className="flex flex-wrap gap-1 items-center">
-          {selectedTags.map(tag => (
-            <Badge key={tag} variant="secondary" className="flex items-center gap-1">
-              {tag}
-              <X
-                className="h-3 w-3 cursor-pointer"
-                onClick={() => {
-                  const newTags = selectedTags.filter(t => t !== tag);
-                  onFilterChange(newTags);
-                  setLocalSelectedTags(newTags);
-                }}
-              />
-            </Badge>
-          ))}
-          
-          <Button
-            variant="ghost"
-            size="sm"
-            className="h-7 px-2 text-xs"
-            onClick={clearFilters}
-          >
-            Clear all
-          </Button>
-        </div>
-      )}
+        </SheetContent>
+      </Sheet>
+
+      <Select
+        value={`${sortOption.field}-${sortOption.direction}`}
+        onValueChange={handleSortChange}
+      >
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Sort by..." />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectItem value="name-asc">Name (A-Z)</SelectItem>
+            <SelectItem value="name-desc">Name (Z-A)</SelectItem>
+            <SelectItem value="cookTime-asc">Cooking Time (Low to High)</SelectItem>
+            <SelectItem value="cookTime-desc">Cooking Time (High to Low)</SelectItem>
+            <SelectItem value="servings-asc">Servings (Low to High)</SelectItem>
+            <SelectItem value="servings-desc">Servings (High to Low)</SelectItem>
+            <SelectItem value="difficulty-asc">Difficulty (Easy to Hard)</SelectItem>
+            <SelectItem value="difficulty-desc">Difficulty (Hard to Easy)</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
     </div>
   );
 };

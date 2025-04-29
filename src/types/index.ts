@@ -59,5 +59,27 @@ export interface MealPlanEntry {
   id: string;
   recipeId: string;
   date: string;
-  mealType: 'breakfast' | 'lunch' | 'dinner' | 'snack';
+  mealType: MealType;
+}
+
+export type MealType = 'breakfast' | 'lunch' | 'dinner' | 'snack';
+
+export interface SearchFilters {
+  cuisine?: string[];
+  mealType?: string[];
+  dietaryPreferences?: string[];
+  difficulty?: ('easy' | 'medium' | 'hard')[];
+  cookingTime?: {
+    min?: number;
+    max?: number;
+  };
+  servings?: {
+    min?: number;
+    max?: number;
+  };
+}
+
+export interface SortOption {
+  field: 'name' | 'cookTime' | 'prepTime' | 'servings' | 'difficulty';
+  direction: 'asc' | 'desc';
 }

@@ -1,9 +1,8 @@
-
 import { useState } from "react";
 import Header from "@/components/Header";
 import { useUser } from "@/contexts/UserContext";
 import { searchRecipes } from "@/lib/recipe-service";
-import { Recipe, MealPlanEntry } from "@/types";
+import { Recipe, MealPlanEntry, MealType } from "@/types";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -91,15 +90,16 @@ const MealPlanPage = () => {
   };
   
   // Get the meal type label
-  const getMealTypeLabel = (type: MealPlanEntry['mealType']) => {
+  const getMealTypeLabel = (type: MealType): string => {
     switch (type) {
       case 'breakfast': return 'Breakfast';
       case 'lunch': return 'Lunch';
       case 'dinner': return 'Dinner';
       case 'snack': return 'Snack';
-      default: return type;
     }
   };
+
+  const mealTypes: MealType[] = ['breakfast', 'lunch', 'dinner', 'snack'];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -145,7 +145,7 @@ const MealPlanPage = () => {
               
               {mealsForSelectedDate.length > 0 ? (
                 <div className="space-y-6">
-                  {['breakfast', 'lunch', 'dinner', 'snack'].map(mealType => {
+                  {mealTypes.map(mealType => {
                     const mealsOfType = mealsForSelectedDate.filter(
                       meal => meal.mealType === mealType
                     );
@@ -155,7 +155,7 @@ const MealPlanPage = () => {
                     return (
                       <div key={mealType} className="space-y-3">
                         <h3 className="text-lg font-medium">
-                          {getMealTypeLabel(mealType as MealPlanEntry['mealType'])}
+                          {getMealTypeLabel(mealType)}
                         </h3>
                         
                         <div className="grid gap-3">

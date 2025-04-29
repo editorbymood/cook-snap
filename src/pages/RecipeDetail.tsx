@@ -1,24 +1,23 @@
-
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import Header from "@/components/Header";
-import { Recipe } from "@/types";
-import { getRecipeByName, searchRecipes } from "@/lib/recipe-service";
-import { Clock, Users, ChevronLeft, Timer, Heart, ShoppingCart, CalendarPlus } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
-import { Separator } from "@/components/ui/separator";
-import { useUser } from "@/contexts/UserContext";
-import ShareButton from "@/components/ShareButton";
-import NutritionalInfo from "@/components/NutritionalInfo";
+import React from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { getRecipeById } from '@/lib/recipe-service';
+import { Clock, Users, ChevronLeft, Timer, Heart, ShoppingCart, CalendarPlus } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import { toast } from 'sonner';
+import { Separator } from '@/components/ui/separator';
+import { useUser } from '@/contexts/UserContext';
+import ShareButton from '@/components/ShareButton';
+import NutritionalInfo from '@/components/NutritionalInfo';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Calendar } from "@/components/ui/calendar";
+} from '@/components/ui/dialog';
+import { Calendar } from '@/components/ui/calendar';
 import {
   Select,
   SelectContent,
@@ -26,284 +25,239 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
+import { MealType } from '@/types';
 
 const RecipeDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [recipe, setRecipe] = useState<Recipe | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [selectedDate, setSelectedDate] = React.useState<Date | undefined>(new Date());
+  const [selectedMealType, setSelectedMealType] = React.useState<MealType>('dinner');
   const { toggleFavorite, isFavorite, addToShoppingList, addToMealPlan } = useUser();
-  const [isAddingToMealPlan, setIsAddingToMealPlan] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
-  const [selectedMealType, setSelectedMealType] = useState<"breakfast" | "lunch" | "dinner" | "snack">("dinner");
 
-  useEffect(() => {
-    const fetchRecipe = async () => {
-      setLoading(true);
-      try {
-        // In a real app, you'd get recipe by ID from an API
-        // For this mock app, we'll search for recipes and find by ID
-        const allRecipes = await searchRecipes("");
-        const foundRecipe = allRecipes.find(r => r.id === id);
-        
-        if (foundRecipe) {
-          setRecipe(foundRecipe);
-        } else {
-          toast.error("Recipe not found");
-        }
-      } catch (error) {
-        toast.error("Failed to load recipe");
-        console.error("Error loading recipe:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchRecipe();
-  }, [id]);
+  const { data: recipe, isLoading, error } = useQuery({
+    queryKey: ['recipe', id],
+    queryFn: () => getRecipeById(id!),
+    enabled: !!id,
+  });
 
-  const handleFavoriteToggle = () => {
-    if (recipe) {
-      toggleFavorite(recipe.id);
-      const message = isFavorite(recipe.id) 
-        ? "Removed from favorites" 
-        : "Added to favorites";
-      toast.success(message);
-    }
-  };
+  if (error) {
+    toast.error('Failed to load recipe');
+  }
 
-  const handleAddToShoppingList = () => {
-    if (recipe) {
-      addToShoppingList(recipe.ingredients, recipe.id);
-      toast.success("Ingredients added to shopping list");
-    }
-  };
-
-  const handleAddToMealPlan = () => {
-    if (recipe && selectedDate) {
-      const dateString = selectedDate.toISOString().split('T')[0];
-      addToMealPlan(recipe.id, dateString, selectedMealType);
-      setIsAddingToMealPlan(false);
-      toast.success(`Added to meal plan for ${selectedDate.toLocaleDateString()}`);
-    }
-  };
-
-  if (loading) {
+  if (isLoading) {
     return (
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1 container mx-auto p-4 flex items-center justify-center">
-          <div className="text-center">
-            <div className="h-16 w-16 border-4 border-t-primary rounded-full animate-spin mb-4 mx-auto"></div>
-            <p className="text-muted-foreground">Loading recipe...</p>
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          <Skeleton className="h-[400px] w-full rounded-lg mb-8" />
+          <Skeleton className="h-12 w-1/2 mb-4" />
+          <Skeleton className="h-6 w-3/4 mb-8" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <Skeleton className="h-8 w-1/3 mb-4" />
+              {[...Array(6)].map((_, i) => (
+                <Skeleton key={i} className="h-6 w-full mb-2" />
+              ))}
+            </div>
+            <div>
+              <Skeleton className="h-8 w-1/3 mb-4" />
+              {[...Array(4)].map((_, i) => (
+                <Skeleton key={i} className="h-6 w-full mb-2" />
+              ))}
+            </div>
           </div>
-        </main>
+        </div>
       </div>
     );
   }
 
   if (!recipe) {
     return (
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1 container mx-auto p-4 flex items-center justify-center">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold mb-4">Recipe Not Found</h2>
-            <p className="text-muted-foreground mb-6">
-              Sorry, we couldn't find the recipe you're looking for.
-            </p>
-            <Button asChild>
-              <Link to="/">
-                <ChevronLeft className="mr-2 h-4 w-4" />
-                Back to Home
-              </Link>
-            </Button>
-          </div>
-        </main>
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl font-bold mb-4">Recipe Not Found</h2>
+          <p className="text-muted-foreground mb-6">
+            Sorry, we couldn't find the recipe you're looking for.
+          </p>
+          <Button asChild>
+            <Link to="/recipes">
+              <ChevronLeft className="mr-2 h-4 w-4" />
+              Back to Recipes
+            </Link>
+          </Button>
+        </div>
       </div>
     );
   }
 
+  const handleFavoriteToggle = () => {
+    toggleFavorite(recipe.id);
+    const message = isFavorite(recipe.id) 
+      ? "Removed from favorites" 
+      : "Added to favorites";
+    toast.success(message);
+  };
+
+  const handleAddToShoppingList = () => {
+    addToShoppingList(recipe.ingredients, recipe.id);
+    toast.success("Ingredients added to shopping list");
+  };
+
+  const handleAddToMealPlan = () => {
+    if (!selectedDate) return;
+    
+    const dateString = selectedDate.toISOString().split('T')[0];
+    addToMealPlan(recipe.id, dateString, selectedMealType);
+    toast.success(`Added to meal plan for ${selectedDate.toLocaleDateString()}`);
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      
-      <main className="flex-1">
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto">
+        <Button variant="outline" asChild className="mb-6">
+          <Link to="/recipes">
+            <ChevronLeft className="mr-2 h-4 w-4" />
+            Back to Recipes
+          </Link>
+        </Button>
+
         {recipe.image && (
-          <div className="w-full h-[40vh] relative">
+          <div className="relative h-[400px] mb-8 rounded-lg overflow-hidden">
             <img 
               src={recipe.image} 
               alt={recipe.name} 
-              className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" 
+              className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent"></div>
           </div>
         )}
-        
-        <div className="container mx-auto px-4 py-8 -mt-20 relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <Button variant="outline" asChild className="mb-4 bg-background/80 backdrop-blur-sm transition-all duration-300 hover:bg-background">
-              <Link to="/">
-                <ChevronLeft className="mr-2 h-4 w-4" />
-                Back
-              </Link>
+
+        <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+          <div>
+            <h1 className="text-4xl font-bold mb-2">{recipe.name}</h1>
+            <p className="text-muted-foreground">{recipe.description}</p>
+          </div>
+
+          <div className="flex gap-2">
+            <Button
+              variant={isFavorite(recipe.id) ? "default" : "outline"}
+              size="icon"
+              onClick={handleFavoriteToggle}
+            >
+              <Heart className={`h-5 w-5 ${isFavorite(recipe.id) ? "fill-current" : ""}`} />
             </Button>
-            
-            <div className="bg-background rounded-lg shadow-sm p-6 md:p-8 animate-fade-in">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
-                <div>
-                  <h1 className="text-3xl md:text-4xl font-bold mb-2">{recipe.name}</h1>
-                  <p className="text-muted-foreground mb-4">{recipe.description}</p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {recipe.tags.map((tag, index) => (
-                      <span 
-                        key={index} 
-                        className="px-3 py-1 bg-secondary/30 text-secondary-foreground rounded-full text-sm transition-all duration-300 hover:bg-secondary/50"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="flex flex-wrap gap-2">
-                  <Button 
-                    variant={isFavorite(recipe.id) ? "default" : "outline"}
-                    onClick={handleFavoriteToggle}
-                    className="flex items-center gap-2 transition-all duration-300 hover:scale-105"
-                  >
-                    <Heart className={`h-4 w-4 ${isFavorite(recipe.id) ? "fill-current" : ""}`} />
-                    {isFavorite(recipe.id) ? "Saved" : "Save"}
-                  </Button>
-                  
-                  <ShareButton 
-                    title={recipe.name} 
-                    url={window.location.href} 
+
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handleAddToShoppingList}
+            >
+              <ShoppingCart className="h-5 w-5" />
+            </Button>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="icon">
+                  <CalendarPlus className="h-5 w-5" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Add to Meal Plan</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 py-4">
+                  <Calendar
+                    mode="single"
+                    selected={selectedDate}
+                    onSelect={setSelectedDate}
+                    className="rounded-md border"
                   />
-                  
-                  <Button 
-                    variant="outline" 
-                    onClick={handleAddToShoppingList}
-                    className="transition-all duration-300 hover:scale-105"
+                  <Select
+                    value={selectedMealType}
+                    onValueChange={(value) => setSelectedMealType(value as MealType)}
                   >
-                    <ShoppingCart className="h-4 w-4 mr-2" />
-                    Add to List
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select meal type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="breakfast">Breakfast</SelectItem>
+                        <SelectItem value="lunch">Lunch</SelectItem>
+                        <SelectItem value="dinner">Dinner</SelectItem>
+                        <SelectItem value="snack">Snack</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <Button onClick={handleAddToMealPlan} className="w-full">
+                    Add to Meal Plan
                   </Button>
-                  
-                  <Dialog open={isAddingToMealPlan} onOpenChange={setIsAddingToMealPlan}>
-                    <DialogTrigger asChild>
-                      <Button variant="outline" className="transition-all duration-300 hover:scale-105">
-                        <CalendarPlus className="h-4 w-4 mr-2" />
-                        Meal Plan
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-md">
-                      <DialogHeader>
-                        <DialogTitle>Add to Meal Plan</DialogTitle>
-                      </DialogHeader>
-                      <div className="space-y-4 py-4">
-                        <div className="space-y-2">
-                          <label className="text-sm font-medium">Date</label>
-                          <Calendar
-                            mode="single"
-                            selected={selectedDate}
-                            onSelect={setSelectedDate}
-                            className="rounded-md border"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-sm font-medium">Meal Type</label>
-                          <Select value={selectedMealType} onValueChange={(value: any) => setSelectedMealType(value)}>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select meal type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectGroup>
-                                <SelectItem value="breakfast">Breakfast</SelectItem>
-                                <SelectItem value="lunch">Lunch</SelectItem>
-                                <SelectItem value="dinner">Dinner</SelectItem>
-                                <SelectItem value="snack">Snack</SelectItem>
-                              </SelectGroup>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <Button className="w-full" onClick={handleAddToMealPlan}>
-                          Add to Meal Plan
-                        </Button>
-                      </div>
-                    </DialogContent>
-                  </Dialog>
                 </div>
-              </div>
-              
-              <div className="flex flex-wrap gap-4 mb-8">
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <Clock className="h-5 w-5" />
-                  <div>
-                    <p className="text-sm">Prep Time</p>
-                    <p className="font-medium">{recipe.prepTime}</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <Timer className="h-5 w-5" />
-                  <div>
-                    <p className="text-sm">Cook Time</p>
-                    <p className="font-medium">{recipe.cookTime}</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <Users className="h-5 w-5" />
-                  <div>
-                    <p className="text-sm">Servings</p>
-                    <p className="font-medium">{recipe.servings}</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="md:col-span-2 space-y-8">
-                  <div className="animate-fade-in" style={{ animationDelay: "100ms" }}>
-                    <h2 className="text-xl font-semibold mb-4">Ingredients</h2>
-                    <ul className="space-y-2">
-                      {recipe.ingredients.map((ingredient, index) => (
-                        <li key={index} className="flex items-start animate-slide-in" style={{ animationDelay: `${index * 50}ms` }}>
-                          <span className="inline-block h-2 w-2 rounded-full bg-primary mt-1.5 mr-2"></span>
-                          <span className="transition-colors duration-300 hover:text-primary">{ingredient}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <Separator />
-                  
-                  <div className="animate-fade-in" style={{ animationDelay: "200ms" }}>
-                    <h2 className="text-xl font-semibold mb-4">Instructions</h2>
-                    <ol className="space-y-4">
-                      {recipe.instructions.map((instruction, index) => (
-                        <li key={index} className="flex animate-slide-in" style={{ animationDelay: `${(index + 4) * 50}ms` }}>
-                          <span className="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-primary/10 text-primary text-sm font-medium mr-3 mt-0.5 transition-all duration-300 hover:bg-primary/20">
-                            {index + 1}
-                          </span>
-                          <span className="transition-colors duration-300 hover:text-primary">{instruction}</span>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                </div>
-                
-                <div className="animate-fade-in" style={{ animationDelay: "300ms" }}>
-                  {recipe.nutritionalInfo && (
-                    <NutritionalInfo nutritionalInfo={recipe.nutritionalInfo} />
-                  )}
-                </div>
-              </div>
-            </div>
+              </DialogContent>
+            </Dialog>
+
+            <ShareButton title={recipe.name} />
           </div>
         </div>
-      </main>
+
+        <div className="flex flex-wrap gap-6 mb-8">
+          <div className="flex items-center gap-2">
+            <Timer className="h-5 w-5 text-muted-foreground" />
+            <span>Prep: {recipe.prepTime} mins</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Clock className="h-5 w-5 text-muted-foreground" />
+            <span>Cook: {recipe.cookTime} mins</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Users className="h-5 w-5 text-muted-foreground" />
+            <span>Serves: {recipe.servings}</span>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2 mb-8">
+          {recipe.tags.map((tag, index) => (
+            <span 
+              key={index}
+              className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Ingredients</h2>
+            <ul className="space-y-2">
+              {recipe.ingredients.map((ingredient, index) => (
+                <li key={index} className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                  {ingredient}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Instructions</h2>
+            <ol className="space-y-4">
+              {recipe.instructions.map((step, index) => (
+                <li key={index} className="flex gap-4">
+                  <span className="font-medium text-muted-foreground">
+                    {index + 1}.
+                  </span>
+                  {step}
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        {recipe.nutritionalInfo && (
+          <>
+            <Separator className="my-8" />
+            <NutritionalInfo info={recipe.nutritionalInfo} />
+          </>
+        )}
+      </div>
     </div>
   );
 };

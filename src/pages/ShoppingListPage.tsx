@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Header from "@/components/Header";
 import { useUser } from "@/contexts/UserContext";
@@ -11,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import ShareButton from "@/components/ShareButton";
+import { ShoppingListItem } from "@/types";
 
 const ShoppingListPage = () => {
   const { user, toggleShoppingListItem, removeFromShoppingList, addToShoppingList } = useUser();
@@ -35,7 +35,7 @@ const ShoppingListPage = () => {
     );
   }
   
-  const handleAddItem = (e: React.FormEvent) => {
+  const handleAddItem = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (newItem.trim()) {
       addToShoppingList([newItem.trim()]);
@@ -73,14 +73,14 @@ const ShoppingListPage = () => {
   };
   
   // Group items by recipe for better organization
-  const groupedItems = user.shoppingList.reduce((acc, item) => {
+  const groupedItems: Record<string, ShoppingListItem[]> = user.shoppingList.reduce((acc, item) => {
     const key = item.recipeId || 'other';
     if (!acc[key]) {
       acc[key] = [];
     }
     acc[key].push(item);
     return acc;
-  }, {} as Record<string, typeof user.shoppingList>);
+  }, {} as Record<string, ShoppingListItem[]>);
   
   return (
     <div className="min-h-screen flex flex-col">

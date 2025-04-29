@@ -1,10 +1,15 @@
-import Hero from "@/components/landing/Hero";
-import Features from "@/components/landing/Features";
-import Testimonials from "@/components/landing/Testimonials";
-import CTASection from "@/components/landing/CTASection";
-import Footer from "@/components/landing/Footer";
-import RecipeCarousel from "@/components/RecipeCarousel";
+import { motion } from "framer-motion";
+import { ArrowRight, ChefHat, Clock, Heart, Search, Users } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { Recipe } from "@/types";
+import RecipeCarousel from "@/components/RecipeCarousel";
+
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+};
 
 const LandingPage = () => {
   const popularRecipes: Recipe[] = [
@@ -129,24 +134,140 @@ const LandingPage = () => {
     }
   ];
 
+  const features = [
+    {
+      icon: <Search className="w-6 h-6" />,
+      title: "Smart Search",
+      description: "Find recipes instantly with our AI-powered search"
+    },
+    {
+      icon: <ChefHat className="w-6 h-6" />,
+      title: "Expert Tips",
+      description: "Get professional cooking tips and techniques"
+    },
+    {
+      icon: <Clock className="w-6 h-6" />,
+      title: "Quick Meals",
+      description: "Discover recipes that fit your schedule"
+    },
+    {
+      icon: <Users className="w-6 h-6" />,
+      title: "Community",
+      description: "Join a community of food enthusiasts"
+    }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Hero />
-      
-      <section className="py-16 bg-secondary/10">
-        <div className="container px-4 mx-auto max-w-6xl">
-          <RecipeCarousel
-            recipes={popularRecipes}
-            title="Popular Recipes"
-            description="Discover our most loved recipes that everyone's cooking right now"
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30" />
+          <img
+            src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2670&auto=format&fit=crop"
+            alt="Hero background"
+            className="w-full h-full object-cover"
           />
         </div>
+        
+        <motion.div
+          className="container px-4 mx-auto max-w-6xl relative z-10 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+            Discover Your Next
+            <span className="text-primary"> Culinary Adventure</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
+            Transform your cooking experience with AI-powered recipe discovery and personalized meal planning
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Button size="lg" className="bg-primary hover:bg-primary/90">
+              Get Started <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+            <Button size="lg" variant="outline" className="bg-white/10 text-white border-white/20 hover:bg-white/20">
+              Learn More
+            </Button>
+          </div>
+        </motion.div>
       </section>
-      
-      <Features />
-      <Testimonials />
-      <CTASection />
-      <Footer />
+
+      {/* Features Section */}
+      <section className="py-20 bg-background">
+        <div className="container px-4 mx-auto max-w-6xl">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose CookSnap?</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Experience the future of cooking with our innovative features designed to make your culinary journey easier and more enjoyable
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                className="p-6 rounded-lg bg-card border border-border hover:border-primary/50 transition-colors"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="text-primary mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Recipes Section */}
+      <section className="py-20 bg-secondary/10">
+        <div className="container px-4 mx-auto max-w-6xl">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Popular Recipes</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Discover our most loved recipes that everyone's cooking right now
+            </p>
+          </motion.div>
+
+          <RecipeCarousel recipes={popularRecipes} />
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-primary text-primary-foreground">
+        <div className="container px-4 mx-auto max-w-6xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Cooking?</h2>
+            <p className="text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+              Join thousands of home cooks who are already enjoying the benefits of AI-powered recipe discovery
+            </p>
+            <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
+              Start Your Journey <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 };
