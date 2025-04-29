@@ -64,8 +64,7 @@ CookSnap is a modern web application that helps you discover, create, and share 
 ## 📸 Screenshots
 
 <div align="center">
-  <img src="screenshots/landing-page.png" alt="Landing Page" width="400" />
-  <img src="screenshots/recipe-search.png" alt="Recipe Search" width="400" />
+  <img src="https://media-hosting.imagekit.io/1ff3d7e329d44687/landing%20page.png.png?Expires=1840541525&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=XIABoYo1KbrCZEB6Aql5yhQQE7fdkJCGhZGC34Tz80XlR7esCDaBBPrOQBQo2BDQYCoAPsYlWpqFRFsBhodEcpXQFQW4BSc52tw7Vr-paDsYWdg0vQNkYVx5EzHq5kosW5C34RfPcnSJk-Nqlr71X~v2EanL-2MUDM6SCLELvK-ficHfHC57FzpVcTg6F9WuSG9NpgyisQJ3IzNDyBn5jOItPMCzemhTTPb0eYlVF1dGL9E-l81O2hN84NtkMomL5tBsO5weOnTyXnnHQ43EhgI8Bg5Viz5rckmRiyWt-8vMOMm7WY7VvnHbfNvq~zrJJsAi6x3GyNXeTL7SXimEoQ__" alt="Landing Page" width="800" />
 </div>
 
 ## 🤝 Contributing
