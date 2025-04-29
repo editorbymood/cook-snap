@@ -1,1 +1,105 @@
+# 🍳 CookSnap - Your AI-Powered Recipe Assistant
 
+<div align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+</div>
+
+## ✨ Overview
+
+CookSnap is a modern web application that helps you discover, create, and share recipes with the power of AI. Whether you're a seasoned chef or a kitchen newbie, CookSnap makes cooking fun and accessible.
+
+## 🚀 Features
+
+- 🔍 **Smart Recipe Search**: Find recipes based on ingredients, dietary preferences, or cooking time
+- 📸 **AI-Powered Image Recognition**: Upload food images to get instant recipe suggestions
+- 📱 **Responsive Design**: Beautiful interface that works on all devices
+- 🌙 **Dark Mode Support**: Cook comfortably in any lighting condition
+- 🔄 **Real-time Updates**: Get instant feedback and suggestions
+- 📝 **Interactive Recipe Cards**: Step-by-step instructions with visual guides
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React + TypeScript + Vite
+- **Styling**: Tailwind CSS + Shadcn UI
+- **State Management**: React Context API
+- **Backend**: Node.js + Express
+- **Database**: MongoDB
+- **AI Integration**: OpenAI API
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+- MongoDB
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/editorbymood/cook-snap.git
+   cd cook-snap
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+   Fill in your environment variables in the `.env` file.
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## 📸 Screenshots
+
+<div align="center">
+  <img src="screenshots/landing-page.png" alt="Landing Page" width="400" />
+  <img src="screenshots/recipe-search.png" alt="Recipe Search" width="400" />
+</div>
+
+## 🤝 Contributing
+
+We welcome contributions! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Authors
+
+- **Your Name** - *Initial work* - [editorbymood](https://github.com/editorbymood)
+
+## 🙏 Acknowledgments
+
+- Thanks to all contributors who have helped shape this project
+- Special thanks to the open-source community for their amazing tools and libraries
+
+## 📞 Contact
+
+For any questions or suggestions, feel free to reach out:
+
+- GitHub: [@editorbymood](https://github.com/editorbymood)
+- Email: your.email@example.com
+
+---
+
+<div align="center">
+  <p>Made with ❤️ by the CookSnap team</p>
+</div>
