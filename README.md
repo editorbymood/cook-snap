@@ -65,6 +65,8 @@ CookSnap is a modern web application that helps you discover, create, and share 
 
 <div align="center">
   <img src="https://media-hosting.imagekit.io/1ff3d7e329d44687/landing%20page.png.png?Expires=1840541525&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=XIABoYo1KbrCZEB6Aql5yhQQE7fdkJCGhZGC34Tz80XlR7esCDaBBPrOQBQo2BDQYCoAPsYlWpqFRFsBhodEcpXQFQW4BSc52tw7Vr-paDsYWdg0vQNkYVx5EzHq5kosW5C34RfPcnSJk-Nqlr71X~v2EanL-2MUDM6SCLELvK-ficHfHC57FzpVcTg6F9WuSG9NpgyisQJ3IzNDyBn5jOItPMCzemhTTPb0eYlVF1dGL9E-l81O2hN84NtkMomL5tBsO5weOnTyXnnHQ43EhgI8Bg5Viz5rckmRiyWt-8vMOMm7WY7VvnHbfNvq~zrJJsAi6x3GyNXeTL7SXimEoQ__" alt="Landing Page" width="800" />
+  <br/><br/>
+  <img src="https://media-hosting.imagekit.io/3b69e8ede3eb4909/reciepe%20page.png.png?Expires=1840541535&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=QMuMbz8aIKfmQToZGZyiyI2K224kUkZ6SieEPj34rk7T2L2EQWZ0oO40C0jgJ68yvr~Fmq3jEM5pRt8SxDJL6HWkB9Q3d6g-0~k1e941kLtr0LfV8s9-8SKzaQ08qezRDCT7uyMkWgiGwo2gEWfPNIfYdYjDN2pOFmNxjf5uPcneWNemdO9MdGOvDKvKu3LBT-gMD1Cxb~WF--xKZJOFoKHKKJe8PB~LOlonmETIgRPu8px8LahjT6odecu5~erSRnfSrcNm84Ie6vsjk~k0aYa6myMIicMfRgKvra-SngtN2tuVzqzQacP1odZl9v~FfYIsmdLxkdrb590FHgqomg__" alt="Recipe Page" width="800" />
 </div>
 
 ## 🤝 Contributing
