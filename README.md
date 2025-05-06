@@ -1,4 +1,4 @@
-# 🍳 CookSnap - Your AI-Powered Recipe Assistant
+# 🍳 [CookSnap - Your AI-Powered Recipe Assistant](https://cook-snap-two.vercel.app/)
 
 <div align="center">
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
